@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder", "DogTinder\DogTinder.csproj", "{6848D328-435A-495C-8692-628A90AECDA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder.EFDataAccessLibrary", "DogTinder.Models\DogTinder.EFDataAccessLibrary.csproj", "{C67143A6-3EFB-4505-9CEF-D56BFA1196A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder.Services", "DogTinder.Services\DogTinder.Services.csproj", "{293D4EA2-52A9-4CC4-90A8-D940F0F4CCC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder.Repository", "DogTinder.Repository\DogTinder.Repository.csproj", "{1D444C9D-0FA1-4339-97EC-48636F2F6F38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6848D328-435A-495C-8692-628A90AECDA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6848D328-435A-495C-8692-628A90AECDA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6848D328-435A-495C-8692-628A90AECDA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6848D328-435A-495C-8692-628A90AECDA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C67143A6-3EFB-4505-9CEF-D56BFA1196A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67143A6-3EFB-4505-9CEF-D56BFA1196A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67143A6-3EFB-4505-9CEF-D56BFA1196A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67143A6-3EFB-4505-9CEF-D56BFA1196A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293D4EA2-52A9-4CC4-90A8-D940F0F4CCC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293D4EA2-52A9-4CC4-90A8-D940F0F4CCC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293D4EA2-52A9-4CC4-90A8-D940F0F4CCC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293D4EA2-52A9-4CC4-90A8-D940F0F4CCC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D444C9D-0FA1-4339-97EC-48636F2F6F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D444C9D-0FA1-4339-97EC-48636F2F6F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D444C9D-0FA1-4339-97EC-48636F2F6F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D444C9D-0FA1-4339-97EC-48636F2F6F38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63813FEA-154E-4DE5-BD0A-6D105A6CDA01}
+	EndGlobalSection
+EndGlobal
