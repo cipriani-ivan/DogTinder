@@ -1,6 +1,5 @@
 ﻿using DogTinder.Models;
 using DogTinder.Repository;
-using DogTinder.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 

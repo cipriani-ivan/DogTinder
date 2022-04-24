@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/fetch-data",
+  "sourceRoot": "libs/fetch-data/src",
+  "prefix": "ad",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/fetch-data"],
+      "options": {
+        "project": "libs/fetch-data/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/fetch-data/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/fetch-data/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/fetch-data"],
+      "options": {
+        "jestConfig": "libs/fetch-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/fetch-data/**/*.ts",
+          "libs/fetch-data/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["ad"]
+}

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ad/fetch-data": ["libs/fetch-data/src/index.ts"],
+      "@ad/nav-menu": ["libs/nav-menu/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
