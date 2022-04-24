@@ -1,5 +1,6 @@
 ﻿using DogTinder.Models;
 using DogTinder.Repository;
+using DogTinder.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,19 +15,19 @@ namespace DogTinder.Services
 
 		private IAppointmentRepository AppointmentRepository { get; }
 
-		public IList<AppointmentModel> GetAppointments()
+		public IList<AppointmentViewModel> GetAppointments()
 		{
 
 			var test = AppointmentRepository.GetAllAppointments().ToList();
-			List<AppointmentModel> appointmentModels = new List<AppointmentModel>();
+			List<AppointmentViewModel> appointmentModels = new List<AppointmentViewModel>();
 
 			test.ForEach(b => {
-				appointmentModels.Add(new AppointmentModel
+				appointmentModels.Add(new AppointmentViewModel
 				{
 					AppointmentId = b.AppointmentId,
 					Time = b.Time,
 					Place = b.Place.Adress,
-					Breed = b.Dogs.Select(c => c.Breed).ToList()
+					Dogs = b.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed }).ToList()
 				});
 				}
 			);
