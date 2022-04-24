@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DogTinder.Services
+namespace DogTinder.ViewModels
 {
 	public class AppointmentViewModel
 	{

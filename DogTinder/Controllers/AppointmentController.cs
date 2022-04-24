@@ -1,6 +1,9 @@
-﻿using DogTinder.Services;
+﻿using AutoMapper;
+using DogTinder.Services;
+using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DogTinder.Controllers
 {
@@ -9,16 +12,20 @@ namespace DogTinder.Controllers
 	public class AppointmentController : ControllerBase
 	{
 		private readonly IAppointmentService appointmentService;
+		private readonly IMapper mapper;
 
-		public AppointmentController(IAppointmentService appointmentService)
+		public AppointmentController(IAppointmentService appointmentService, IMapper mapper )
 		{
 			this.appointmentService = appointmentService;
+			this.mapper = mapper;
 		}
 
 		[HttpGet]
 		public IList<AppointmentViewModel> Get()
 		{
-			return appointmentService.GetAppointments();
+			var appointments = appointmentService.GetAppointments().ToList();
+
+			return mapper.Map<List<AppointmentViewModel>>(appointments);
 		}
 	}
 }

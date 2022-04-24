@@ -8,30 +8,17 @@ namespace DogTinder.Services
 {
 	public class AppointmentService: IAppointmentService
 	{
+		private IAppointmentRepository AppointmentRepository { get; }
+
 		public AppointmentService(IAppointmentRepository appointmentRepository)
 		{
 			AppointmentRepository = appointmentRepository;
+
 		}
 
-		private IAppointmentRepository AppointmentRepository { get; }
-
-		public IList<AppointmentViewModel> GetAppointments()
+		public IList<Appointment> GetAppointments()
 		{
-
-			var test = AppointmentRepository.GetAllAppointments().ToList();
-			List<AppointmentViewModel> appointmentModels = new List<AppointmentViewModel>();
-
-			test.ForEach(b => {
-				appointmentModels.Add(new AppointmentViewModel
-				{
-					AppointmentId = b.AppointmentId,
-					Time = b.Time,
-					Place = b.Place.Adress,
-					Dogs = b.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed }).ToList()
-				});
-				}
-			);
-			return appointmentModels;
+			return AppointmentRepository.GetAllAppointments().ToList(); ;
 		}
 	}
 }

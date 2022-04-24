@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using DogTinder.Models;
+using DogTinder.ViewModels;
+using System.Collections.Generic;
 
 namespace DogTinder.Services
 {
 	public interface IAppointmentService
 	{
-		IList<AppointmentViewModel> GetAppointments();
+		IList<Appointment> GetAppointments();
 	}
 }
