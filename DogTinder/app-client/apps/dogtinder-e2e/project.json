@@ -1,0 +1,28 @@
+{
+  "root": "apps/dogtinder-e2e",
+  "sourceRoot": "apps/dogtinder-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/dogtinder-e2e/cypress.json",
+        "devServerTarget": "dogtinder:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "dogtinder:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/dogtinder-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["dogtinder"]
+}
