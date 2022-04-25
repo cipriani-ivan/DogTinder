@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavMenuModule } from '@ad/nav-menu';
+import { APIClient } from 'output';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,7 @@ import { NavMenuModule } from '@ad/nav-menu';
     AppRoutingModule,
     NavMenuModule.forRoot(),
   ],
+  providers: [APIClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

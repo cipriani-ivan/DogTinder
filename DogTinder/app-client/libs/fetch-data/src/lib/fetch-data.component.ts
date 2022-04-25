@@ -1,29 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Appointment } from './models/appointment';
-import { Subject, takeUntil } from 'rxjs';
+import { APIClient } from '../../../../output';
 
 @Component({
   selector: 'ad-fetch-data',
-  templateUrl: './fetch-data.component.html',
+  templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent implements OnInit {
-  // to move to base component
-  protected ngUnsubscribe: Subject<void> = new Subject();
   public appointments: Appointment[] = [];
-  private HTTP: HttpClient;
-  private BaseURL: string;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.HTTP = http;
-    this.BaseURL = baseUrl;
-  }
+  constructor(private api: APIClient) {}
 
   ngOnInit(): void {
-    this.HTTP.get<Appointment[]>(`${this.BaseURL}appointment`)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((result) => {
-        this.appointments = result;
-      });
+    this.api.getAppointment().subscribe((users) => (this.appointments = users));
   }
 }
