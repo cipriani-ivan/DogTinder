@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from './models/appointment';
 import { Subject, takeUntil } from 'rxjs';
@@ -14,11 +14,9 @@ export class FetchDataComponent implements OnInit {
   private HTTP: HttpClient;
   private BaseURL: string;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.HTTP = http;
-
-    // to retrieve
-    this.BaseURL = 'https://localhost:44345/';
+    this.BaseURL = baseUrl;
   }
 
   ngOnInit(): void {
