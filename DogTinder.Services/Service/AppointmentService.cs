@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using DogTinder.Repository;
+using DogTinder.IRepository;
+using DogTinder.IServices;
 using DogTinder.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace DogTinder.Services
 
 		public IList<AppointmentViewModel> GetAppointments()
 		{
-			var appointments = AppointmentRepository.GetAllAppointments().ToList();
+			var appointments = AppointmentRepository.GetAll().ToList();
 			return Mapper.Map<List<AppointmentViewModel>>(appointments);
 		}
 	}

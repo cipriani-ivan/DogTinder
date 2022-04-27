@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DogTinder.Models.Migrations
 {
-    [DbContext(typeof(AppointmentContext))]
+    [DbContext(typeof(DogTinderContext))]
     [Migration("20220423140550_Attributes")]
     partial class Attributes
     {

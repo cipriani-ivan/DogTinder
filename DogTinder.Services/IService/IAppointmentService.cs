@@ -1,7 +1,7 @@
 ﻿using DogTinder.ViewModels;
 using System.Collections.Generic;
 
-namespace DogTinder.Services
+namespace DogTinder.IServices
 {
 	public interface IAppointmentService
 	{

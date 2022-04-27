@@ -1,29 +1,28 @@
 ﻿using DogTinder.IRepository;
 using DogTinder.Models;
 using DogTinder.Models.DataAccess;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
 namespace DogTinder.Repository
 {
-	public class AppointmentRepository : IAppointmentRepository
+	public class DogRepository : IDogRepository
 	{
 		private readonly DogTinderContext Context;
 
-		public AppointmentRepository(DogTinderContext context)
+		public DogRepository(DogTinderContext context)
 		{
 			Context = context;
 		}
 
-		public IEnumerable<Appointment> GetAll()
+		public IEnumerable<Dog> GetAll()
 		{
-			return Context.Appointments.Include(a => a.Place).Include(a => a.Dogs);
+			return Context.Dogs;
 		}
 
-		public void Insert(Appointment appointment)
+		public void Insert(Dog dog)
 		{
-			Context.Appointments.Add(appointment);
+			Context.Dogs.Add(dog);
 		}
 
 		public void Save()
@@ -51,4 +50,3 @@ namespace DogTinder.Repository
 		}
 	}
 }
-

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace DogTinder.IRepository
 {
-	public interface IAppointmentRepository
+	public interface IPlaceRepository
 	{
-		IEnumerable<Appointment> GetAll();
-		void Insert(Appointment owner);
+		IEnumerable<Place> GetAll();
+		void Insert(Place owner);
 		void Save();
 	}
 }

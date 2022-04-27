@@ -2,9 +2,9 @@
 
 namespace DogTinder.Models.DataAccess
 {
-	public class AppointmentContext : DbContext
+	public class DogTinderContext : DbContext
 	{
-		public AppointmentContext(DbContextOptions options) : base(options) { }
+		public DogTinderContext(DbContextOptions options) : base(options) { }
 	    public DbSet<Appointment> Appointments { get; set; }
 		public DbSet<Dog> Dogs { get; set; }
 		public DbSet<Owner> Owners { get; set; }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using DogTinder.IRepository;
 using DogTinder.Models;
 using DogTinder.Repository;
 using DogTinder.Services;
@@ -20,7 +21,7 @@ namespace DogTinder.xUnitTest
 			// Arrage
 			var config = new MapperConfiguration(mc =>
 			{
-				mc.AddProfile(new AppointmentProfile());
+				mc.AddProfile(new DogTinderProfile());
 			});
 
 			Mapper = new Mapper(config);
@@ -84,7 +85,7 @@ namespace DogTinder.xUnitTest
 			 };
 
 			var appointmentRepositoryMock = new Mock<IAppointmentRepository>();
-			appointmentRepositoryMock.Setup(x => x.GetAllAppointments()).Returns(appointmentsData);
+			appointmentRepositoryMock.Setup(x => x.GetAll()).Returns(appointmentsData);
 			appointmentService = new AppointmentService(appointmentRepositoryMock.Object, Mapper);
 		}
 

@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace DogTinder
 {
-	public class AppointmentProfile: Profile
+	public class DogTinderProfile: Profile
 	{
-		public AppointmentProfile()
+		public DogTinderProfile()
 		{
 			CreateMap<Appointment, AppointmentViewModel>()
 				.ForMember(dest =>
@@ -18,6 +18,9 @@ namespace DogTinder
 				opt => opt.MapFrom(scr => 
 					scr.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed }).ToList() 
 				));
-			}
-	}
+			CreateMap<Owner, OwnerViewModel>();
+			CreateMap<Place, PlaceViewModel>();
+			CreateMap<Dog, DogViewModel>();
+		}			
+	}	
 }

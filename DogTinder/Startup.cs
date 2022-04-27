@@ -1,3 +1,5 @@
+using DogTinder.IRepository;
+using DogTinder.IServices;
 using DogTinder.Models.DataAccess;
 using DogTinder.Repository;
 using DogTinder.Services;
@@ -29,9 +31,17 @@ namespace DogTinder
 			{
 				configuration.RootPath = "app-client/dist";
 			});
+
+			// make automatic for all repository and service
 			services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 			services.AddScoped<IAppointmentService, AppointmentService>();
-			services.AddDbContext<AppointmentContext>(options =>
+			services.AddScoped<IPlaceRepository, PlaceRepository>();
+			services.AddScoped<IPlaceService, PlaceService>();
+			services.AddScoped<IDogRepository,DogRepository>();
+			services.AddScoped<IDogService, DogService>();
+			services.AddScoped<IOwnerRepository, OwnerRepository>();
+			services.AddScoped<IOwnerService, OwnerService>();
+			services.AddDbContext<DogTinderContext>(options =>
 			{
 				options.UseSqlServer(Configuration.GetConnectionString("Default"));
 			});

@@ -1,4 +1,4 @@
-﻿using DogTinder.Services;
+﻿using DogTinder.IServices;
 using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
