@@ -35,7 +35,7 @@
       "style": "css",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "none"
     },
     "@nrwl/angular:library": {
       "linter": "eslint",

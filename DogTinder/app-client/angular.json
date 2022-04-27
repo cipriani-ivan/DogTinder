@@ -2,7 +2,6 @@
   "version": 2,
   "projects": {
     "dogtinder": "apps/dogtinder",
-    "dogtinder-e2e": "apps/dogtinder-e2e",
     "fetch-data": "libs/fetch-data",
     "nav-menu": "libs/nav-menu"
   }
