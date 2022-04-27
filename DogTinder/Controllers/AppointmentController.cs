@@ -11,21 +11,19 @@ namespace DogTinder.Controllers
 	[Route("[controller]")]
 	public class AppointmentController : ControllerBase
 	{
-		private readonly IAppointmentService appointmentService;
-		private readonly IMapper mapper;
+		private readonly IAppointmentService AppointmentService;
 
-		public AppointmentController(IAppointmentService appointmentService, IMapper mapper )
+
+		public AppointmentController(IAppointmentService appointmentService)
 		{
-			this.appointmentService = appointmentService;
-			this.mapper = mapper;
+			AppointmentService = appointmentService;
+	
 		}
 
 		[HttpGet]
 		public IList<AppointmentViewModel> Get()
 		{
-			var appointments = appointmentService.GetAppointments().ToList();
-
-			return mapper.Map<List<AppointmentViewModel>>(appointments);
+			return AppointmentService.GetAppointments().ToList();
 		}
 	}
 }

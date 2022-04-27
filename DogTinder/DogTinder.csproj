@@ -30,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DogTinder.Models\DogTinder.EFDataAccessLibrary.csproj" />
-    <ProjectReference Include="..\DogTinder.Repository\DogTinder.Repository.csproj" />
     <ProjectReference Include="..\DogTinder.Services\DogTinder.Services.csproj" />
   </ItemGroup>
 

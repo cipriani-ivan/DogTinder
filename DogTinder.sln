@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogTinder.Repository", "Dog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogTinder.ViewModels", "DogTinder.AppointmentsViewModels\DogTinder.ViewModels.csproj", "{E6BECEDC-ED03-4073-9139-0EC24965BC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder.SpecFlow", "DogTinder.SpecFlow\DogTinder.SpecFlow.csproj", "{C54C8EAE-71B7-4D36-A600-B634D08A7457}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DogTinder.SpecFlow", "DogTinder.SpecFlow\DogTinder.SpecFlow.csproj", "{C54C8EAE-71B7-4D36-A600-B634D08A7457}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogTinder.xUnitTest", "DogTinder.xUnitTest\DogTinder.xUnitTest.csproj", "{54981C2D-CCFC-40E9-9A10-ABF95C29E4C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C54C8EAE-71B7-4D36-A600-B634D08A7457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54C8EAE-71B7-4D36-A600-B634D08A7457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54C8EAE-71B7-4D36-A600-B634D08A7457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54981C2D-CCFC-40E9-9A10-ABF95C29E4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54981C2D-CCFC-40E9-9A10-ABF95C29E4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54981C2D-CCFC-40E9-9A10-ABF95C29E4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54981C2D-CCFC-40E9-9A10-ABF95C29E4C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
