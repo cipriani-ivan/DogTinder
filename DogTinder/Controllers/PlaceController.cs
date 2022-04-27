@@ -17,13 +17,12 @@ namespace DogTinder.Controllers
 			PlaceService = placeService;
 		}
 
-		// GET: OwnerController/Create
+		[HttpGet]
 		public IList<PlaceViewModel> GetPlaces()
 		{
 			return PlaceService.GetPlaces();
 		}
 
-		// POST: OwnerController/Create
 		[HttpPost]
 		public void PostPlaces(PlaceViewModel placeViewModel)
 		{

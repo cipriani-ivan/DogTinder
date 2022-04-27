@@ -17,13 +17,12 @@ namespace DogTinder.Controllers
 			OwnerService = ownerService;
 		}
 
-		// GET: OwnerController/Create
+		[HttpGet]
 		public IList<OwnerViewModel> GetOwners()
 		{
 			return OwnerService.GetOwners();
 		}
 
-		// POST: OwnerController/Create
 		[HttpPost]
 		public void PostOwners(OwnerViewModel ownerViewModel)
 		{

@@ -17,13 +17,12 @@ namespace DogTinder.Controllers
 			DogService = ownerService;
 		}
 
-		// GET: OwnerController/Create
-		public IList<DogViewModel> GeDogs()
+		[HttpGet]
+		public IList<DogViewModel> GetDogs()
 		{
 			return DogService.GetDogs();
 		}
 
-		// POST: OwnerController/Create
 		[HttpPost]
 		public void PostDog(DogViewModel dogViewModel)
 		{
