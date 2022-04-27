@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DogTinder.Services;
+﻿using DogTinder.Services;
 using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

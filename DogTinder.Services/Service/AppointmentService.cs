@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DogTinder.Models;
 using DogTinder.Repository;
 using DogTinder.ViewModels;
 using System.Collections.Generic;
