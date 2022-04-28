@@ -20,11 +20,12 @@ namespace DogTinder.Controllers
 		[HttpGet]
 		public IList<DogViewModel> GetDogs()
 		{
+			var test = DogService.GetDogs();
 			return DogService.GetDogs();
 		}
 
 		[HttpPost]
-		public void PostDog(DogViewModel dogViewModel)
+		public void PostDog([FromBody] DogViewModel dogViewModel)
 		{
 			DogService.InsertDog(dogViewModel);
 		}

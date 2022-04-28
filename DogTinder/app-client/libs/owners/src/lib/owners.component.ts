@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Owner } from '../../../../output/models/owner';
-import { APIClient } from '../../../../output';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { Owner } from 'output/models/owner';
+import { APIClient } from 'output';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -10,22 +10,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './owners.component.html',
 })
 export class OwnersComponent implements OnInit {
-  public owners: Owner[] = [];
+  owners: Owner[] = [];
 
   profileForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
   });
+
+  submitted = false;
 
   observableOwnerList: BehaviorSubject<Owner[]> = new BehaviorSubject<Owner[]>(
     []
   );
+
   get observableList(): Observable<Owner[]> {
     return this.observableOwnerList.asObservable();
   }
 
   constructor(private api: APIClient) {}
-
-  submitted = false;
 
   ngOnInit(): void {
     this.api.getOwner().subscribe((users) => {
@@ -35,7 +36,6 @@ export class OwnersComponent implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    console.log(this.profileForm.value);
     if (this.profileForm?.valid) {
       const owner = JSON.stringify(this.profileForm.value);
       const headers = new HttpHeaders({

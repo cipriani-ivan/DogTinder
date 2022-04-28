@@ -2,24 +2,67 @@
 
 <p>This component demonstrates dogs</p>
 
-<p *ngIf="!dogs"><em>Loading...</em></p>
+<p *ngIf="!observableDogList"><em>Loading...</em></p>
 
 <table
   class="table table-striped"
   aria-labelledby="tableLabel"
-  *ngIf="dogs"
+  *ngIf="observableList"
   data-test="appointmentsTable"
 >
   <thead>
     <tr>
       <th>Name</th>
       <th>Breed</th>
+      <th>Owner</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let dog of dogs">
+    <tr *ngFor="let dog of observableList | async">
       <td>{{ dog.name }}</td>
       <td>{{ dog.breed }}</td>
+      <td>{{ dog.owner.name }}</td>
     </tr>
   </tbody>
 </table>
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Add dog</h1>
+    <form [formGroup]="profileForm">
+      <div class="form-group">
+        <label for="name">name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          formControlName="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">breed</label>
+        <input
+          type="text"
+          class="form-control"
+          id="breed"
+          required
+          formControlName="breed"
+        />
+      </div>
+      <select class="custom-select mb-3" formControlName="ownerid">
+        <option value="">Choose owner</option>
+        <option *ngFor="let owner of owners" [ngValue]="owner.ownerId">
+          {{ owner.name }}
+        </option>
+      </select>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!profileForm.valid"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

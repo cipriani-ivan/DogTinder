@@ -70,6 +70,19 @@ export class APIClient implements APIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  postAppointment(appointment: string, requestHttpOptions?: HttpOptions): Observable<void> {
+    const path = `/Appointment`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('POST', path, options, appointment);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getDog(requestHttpOptions?: HttpOptions): Observable<Dog[]> {
     const path = `/Dog`;
     const options: APIHttpOptions = {
@@ -83,14 +96,14 @@ export class APIClient implements APIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  postDog(requestHttpOptions?: HttpOptions): Observable<void> {
+  postDog(dog: string, requestHttpOptions?: HttpOptions): Observable<void> {
     const path = `/Dog`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<void>('POST', path, options);
+    return this.sendRequest<void>('POST', path, options, dog);
   }
 
   /**
@@ -135,14 +148,14 @@ export class APIClient implements APIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  postPlace(requestHttpOptions?: HttpOptions): Observable<void> {
+  postPlace(place: string, requestHttpOptions?: HttpOptions): Observable<void> {
     const path = `/Place`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<void>('POST', path, options);
+    return this.sendRequest<void>('POST', path, options, place);
   }
 
   private sendRequest<T>(

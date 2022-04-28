@@ -20,9 +20,15 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpGet]
-		public IList<AppointmentViewModel> Get()
+		public IList<AppointmentViewModel> GetAppointments()
 		{
 			return AppointmentService.GetAppointments().ToList();
+		}
+
+		[HttpPost]
+		public void PostAppointment([FromBody] AppointmentViewModel appointmentViewModel)
+		{
+			AppointmentService.InsertAppointment(appointmentViewModel);
 		}
 	}
 }

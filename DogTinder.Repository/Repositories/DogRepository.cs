@@ -1,6 +1,7 @@
 ﻿using DogTinder.IRepository;
 using DogTinder.Models;
 using DogTinder.Models.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace DogTinder.Repository
 
 		public IEnumerable<Dog> GetAll()
 		{
-			return Context.Dogs;
+			return Context.Dogs.Include(a => a.Owner);
 		}
 
 		public void Insert(Dog dog)

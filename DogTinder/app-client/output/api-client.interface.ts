@@ -16,12 +16,20 @@ export interface APIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  postAppointment(
+    appointment: string,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getDog(requestHttpOptions?: HttpOptions): Observable<Dog[]>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  postDog(requestHttpOptions?: HttpOptions): Observable<void>;
+  postDog(dog: string, requestHttpOptions?: HttpOptions): Observable<void>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
@@ -41,5 +49,5 @@ export interface APIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  postPlace(requestHttpOptions?: HttpOptions): Observable<void>;
+  postPlace(place: string, requestHttpOptions?: HttpOptions): Observable<void>;
 }

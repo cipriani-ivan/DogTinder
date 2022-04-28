@@ -6,7 +6,5 @@ namespace DogTinder.ViewModels
 	{
 		public int OwnerId { get; set; }
 		public string Name { get; set; }
-
-		public List<DogViewModel> Dogs { get; set; }
 	}
 }
