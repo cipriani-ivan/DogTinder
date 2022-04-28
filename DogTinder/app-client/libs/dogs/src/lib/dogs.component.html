@@ -1,0 +1,25 @@
+<h1 id="tableLabel">Dogs</h1>
+
+<p>This component demonstrates dogs</p>
+
+<p *ngIf="!dogs"><em>Loading...</em></p>
+
+<table
+  class="table table-striped"
+  aria-labelledby="tableLabel"
+  *ngIf="dogs"
+  data-test="appointmentsTable"
+>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Breed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dog of dogs">
+      <td>{{ dog.name }}</td>
+      <td>{{ dog.breed }}</td>
+    </tr>
+  </tbody>
+</table>

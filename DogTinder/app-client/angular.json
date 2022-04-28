@@ -1,8 +1,11 @@
 {
   "version": 2,
   "projects": {
+    "dogs": "libs/dogs",
     "dogtinder": "apps/dogtinder",
     "fetch-data": "libs/fetch-data",
-    "nav-menu": "libs/nav-menu"
+    "nav-menu": "libs/nav-menu",
+    "owners": "libs/owners",
+    "places": "libs/places"
   }
 }

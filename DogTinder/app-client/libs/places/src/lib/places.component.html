@@ -1,0 +1,23 @@
+<h1 id="tableLabel">Places</h1>
+
+<p>This component demonstrates places</p>
+
+<p *ngIf="!places"><em>Loading...</em></p>
+
+<table
+  class="table table-striped"
+  aria-labelledby="tableLabel"
+  *ngIf="places"
+  data-test="appointmentsTable"
+>
+  <thead>
+    <tr>
+      <th>Place</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let place of places">
+      <td>{{ place.adress }}</td>
+    </tr>
+  </tbody>
+</table>

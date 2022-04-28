@@ -24,7 +24,7 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public void PostOwners(OwnerViewModel ownerViewModel)
+		public void PostOwners([FromBody] OwnerViewModel ownerViewModel)
 		{
 			OwnerService.InsertOwner(ownerViewModel);
 		}

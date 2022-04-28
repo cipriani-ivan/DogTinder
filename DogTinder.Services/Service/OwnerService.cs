@@ -29,6 +29,7 @@ namespace DogTinder.Services
 		{
 			var owner = Mapper.Map<Owner>(ownerViewmodel);
 			OwnerRepository.Insert(owner);
+			OwnerRepository.Save();
 		}
 	}
 }

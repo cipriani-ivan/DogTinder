@@ -5,6 +5,9 @@ import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { DefaultHttpOptions, HttpOptions, APIClientInterface } from './';
 import { Appointment } from './models/appointment';
+import { Dog } from './models/dog';
+import { Place } from './models/place';
+import { Owner } from './models/owner';
 
 export const USE_DOMAIN = new InjectionToken<string>('APIClient_USE_DOMAIN');
 export const USE_HTTP_OPTIONS = new InjectionToken<HttpOptions>(
@@ -20,9 +23,7 @@ type APIHttpOptions = HttpOptions & {
 /**
  * Created with https://github.com/flowup/api-client-generator
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class APIClient implements APIClientInterface {
   readonly options: APIHttpOptions;
 
@@ -64,6 +65,84 @@ export class APIClient implements APIClientInterface {
     };
 
     return this.sendRequest<Appointment[]>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getDog(requestHttpOptions?: HttpOptions): Observable<Dog[]> {
+    const path = `/Dog`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<Dog[]>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  postDog(requestHttpOptions?: HttpOptions): Observable<void> {
+    const path = `/Dog`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('POST', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getOwner(requestHttpOptions?: HttpOptions): Observable<Owner[]> {
+    const path = `/Owner`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<Owner[]>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  postOwner(owner: string, requestHttpOptions?: HttpOptions): Observable<void> {
+    const path = `/Owner`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('POST', path, options, owner);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getPlace(requestHttpOptions?: HttpOptions): Observable<Place[]> {
+    const path = `/Place`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<Place[]>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  postPlace(requestHttpOptions?: HttpOptions): Observable<void> {
+    const path = `/Place`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('POST', path, options);
   }
 
   private sendRequest<T>(

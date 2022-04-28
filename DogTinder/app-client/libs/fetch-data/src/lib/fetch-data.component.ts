@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from './models/appointment';
+import { Appointment } from '../../../../output/models/appointment';
 import { APIClient } from '../../../../output';
 
 @Component({

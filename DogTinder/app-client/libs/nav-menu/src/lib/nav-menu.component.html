@@ -12,7 +12,25 @@
             <a class="nav-link text-dark">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" (click)="onClickFetchData()">
+            <a class="nav-link text-dark" (click)="onClickNavigate('owners')">
+              Owners</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" (click)="onClickNavigate('dogs')">
+              Dogs</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" (click)="onClickNavigate('places')">
+              Places</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-dark"
+              (click)="onClickNavigate('fetch-data')"
+            >
               Fetch data</a
             >
           </li>

@@ -19,6 +19,7 @@ namespace DogTinder
 					scr.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed }).ToList() 
 				));
 			CreateMap<Owner, OwnerViewModel>();
+			CreateMap<OwnerViewModel, Owner>();
 			CreateMap<Place, PlaceViewModel>();
 			CreateMap<Dog, DogViewModel>();
 		}			

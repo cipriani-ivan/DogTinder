@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 
 import { NavMenuModule } from '@ad/nav-menu';
 import { APIClient } from 'output';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { APIClient } from 'output';
     HttpClientModule,
     AppRoutingModule,
     NavMenuModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [APIClient],
   bootstrap: [AppComponent],

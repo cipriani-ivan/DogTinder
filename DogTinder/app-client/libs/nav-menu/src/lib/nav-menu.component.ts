@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent {
   isExpanded = false;
-  constructor(private readonly router: Router) {
-  }
+  constructor(private readonly router: Router) {}
 
   collapse() {
     this.isExpanded = false;
@@ -19,7 +18,7 @@ export class NavMenuComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  onClickFetchData(): void {
-    this.router.navigateByUrl('/fetch-data');
+  onClickNavigate(path: string): void {
+    this.router.navigateByUrl(`/${path}`);
   }
 }
