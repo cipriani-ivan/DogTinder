@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Place } from '../../../../output/models/place';
-import { APIClient } from '../../../../output';
+import { Place } from 'output/models/place';
+import { APIClient } from 'output';
 
 @Component({
   selector: 'ad-places',

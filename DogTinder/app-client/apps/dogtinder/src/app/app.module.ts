@@ -9,8 +9,6 @@ import { NavMenuModule } from '@ad/nav-menu';
 import { APIClient } from 'output';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

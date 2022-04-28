@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from '../../../../output/models/appointment';
-import { APIClient } from '../../../../output';
+import { Appointment } from 'output/models/appointment';
+import { APIClient } from 'output';
 
 @Component({
   selector: 'ad-fetch-data',
