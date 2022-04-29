@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('@ad/home').then((x) => x.HomeModule),
+    pathMatch: 'full',
   },
   {
     path: 'appointments',
