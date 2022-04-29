@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DogTinder.Repository.Repositories
 {
-	public class AppointmentRepository : IAppointmentRepository
+	public class AppointmentRepository : GenericRepository<Appointment>, IAppointmentRepository
 	{
-		private bool Disposed;
+
 		private readonly DogTinderContext Context;
 
-		public AppointmentRepository(DogTinderContext context)
+		public AppointmentRepository(DogTinderContext context) : base(context)
 		{
 			Context = context;
 		}
@@ -32,28 +32,6 @@ namespace DogTinder.Repository.Repositories
 			app.Entity.Place = place;
 		}
 
-		public void Save()
-		{
-			Context.SaveChanges();
-		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!Disposed)
-			{
-				if (disposing)
-				{
-					Context.Dispose();
-				}
-			}
-			Disposed = true;
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
 	}
 }
 

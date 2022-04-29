@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using DogTinder.EFDataAccessLibrary.Models;
+﻿using DogTinder.EFDataAccessLibrary.Models;
 
 namespace DogTinder.Repository.IRepositories
 {
-	public interface IPlaceRepository
+	public interface IPlaceRepository: IGenericRepository<Place>
 	{
-		IEnumerable<Place> GetAll();
-		void Insert(Place owner);
-		void Save();
+
 	}
 }
