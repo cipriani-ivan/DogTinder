@@ -1,5 +1,5 @@
 {
-  "npmScope": "app-client",
+  "npmScope": "ad",
   "affected": {
     "defaultBase": "master"
   },

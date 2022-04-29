@@ -16,10 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@ad/dogs": ["libs/dogs/src/index.ts"],
+      "@ad/home": ["libs/home/src/index.ts"],
       "@ad/nav-menu": ["libs/nav-menu/src/index.ts"],
       "@ad/owners": ["libs/owners/src/index.ts"],
       "@ad/places": ["libs/places/src/index.ts"],
-      "@app-client/appointments": ["libs/appointments/src/index.ts"]
+      "@ad/appointments": ["libs/appointments/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

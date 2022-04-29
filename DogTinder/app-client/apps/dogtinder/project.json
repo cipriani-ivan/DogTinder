@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/dogtinder",
   "sourceRoot": "apps/dogtinder/src",
-  "prefix": "app-client",
+  "prefix": "ad",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

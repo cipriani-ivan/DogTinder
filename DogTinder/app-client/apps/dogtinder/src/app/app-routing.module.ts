@@ -3,9 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('@ad/home').then((x) => x.HomeModule),
+  },
+  {
     path: 'appointments',
     loadChildren: () =>
-      import('@app-client/appointments').then((x) => x.AppointmentsModule),
+      import('@ad/appointments').then((x) => x.AppointmentsModule),
   },
   {
     path: 'owners',

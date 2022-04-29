@@ -9,7 +9,9 @@
       >
         <ul class="navbar-nav flex-grow">
           <li class="nav-item">
-            <a class="nav-link text-dark">Home</a>
+            <a class="nav-link text-dark" (click)="onClickNavigate('home')"
+              >Home</a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" (click)="onClickNavigate('owners')">
@@ -31,7 +33,7 @@
               class="nav-link text-dark"
               (click)="onClickNavigate('appointments')"
             >
-              Fetch data</a
+              Appointments</a
             >
           </li>
         </ul>
