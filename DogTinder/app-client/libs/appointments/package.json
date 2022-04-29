@@ -1,5 +1,5 @@
 {
-  "name": "@ad/fetch-data",
+  "name": "@app-client/appointments",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^13.3.0",

@@ -3,7 +3,7 @@ import {
   mockProvider,
   Spectator,
 } from '@ngneat/spectator/jest';
-import { FetchDataComponent } from './fetch-data.component';
+import { AppointmentsComponent } from './appointments.component';
 import { APIClient } from '../../../../output/api-client.service';
 import { Observable } from 'rxjs';
 import { Appointment } from 'output/models/appointment';
@@ -18,9 +18,9 @@ describe('Appointments', () => {
     },
   ] as Appointment[];
 
-  let spectator: Spectator<FetchDataComponent>;
+  let spectator: Spectator<AppointmentsComponent>;
   const createComponent = createComponentFactory({
-    component: FetchDataComponent,
+    component: AppointmentsComponent,
     detectChanges: true,
     shallow: true,
     componentProviders: [

@@ -9,10 +9,10 @@ import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
-  selector: 'ad-fetch-data',
-  templateUrl: './fetch-data.component.html',
+  selector: 'ad-appointments',
+  templateUrl: './appointments.component.html',
 })
-export class FetchDataComponent implements OnInit {
+export class AppointmentsComponent implements OnInit {
   appointments: Appointment[] = [];
   dogs: Dog[] = [];
   owners: Owner[] = [];

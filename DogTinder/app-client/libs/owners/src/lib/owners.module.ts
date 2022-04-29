@@ -16,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [OwnersComponent],
 })
-export class OwnerModule {}
+export class OwnersModule {}

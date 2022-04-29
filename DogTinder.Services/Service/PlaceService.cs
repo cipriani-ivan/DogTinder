@@ -29,6 +29,7 @@ namespace DogTinder.Services.Service
 		{
 			var place = Mapper.Map<Place>(placeViewmodel);
 			PlaceRepository.Insert(place);
+			PlaceRepository.Save();
 		}
 	}
 }

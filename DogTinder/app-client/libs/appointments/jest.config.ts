@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'fetch-data',
+  displayName: 'appointments',
   preset: '../../jest.preset.ts',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/fetch-data',
+  coverageDirectory: '../../coverage/libs/appointments',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
