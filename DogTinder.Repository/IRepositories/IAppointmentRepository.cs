@@ -1,12 +1,12 @@
-﻿using DogTinder.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DogTinder.EFDataAccessLibrary.Models;
 
-namespace DogTinder.IRepository
+namespace DogTinder.Repository.IRepositories
 {
 	public interface IAppointmentRepository
 	{
 		IEnumerable<Appointment> GetAll();
-		void Insert(Appointment owner);
+		void Insert(Appointment owner, int dogId, int placeId);
 		void Save();
 	}
 }

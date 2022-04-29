@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using DogTinder.IRepository;
-using DogTinder.IServices;
-using DogTinder.Models;
-using DogTinder.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using DogTinder.EFDataAccessLibrary.Models;
+using DogTinder.Repository.IRepositories;
+using DogTinder.Services.IService;
+using DogTinder.ViewModels;
 
-namespace DogTinder.Services
+namespace DogTinder.Services.Service
 {
 	public class AppointmentService: IAppointmentService
 	{
@@ -25,10 +25,16 @@ namespace DogTinder.Services
 			return Mapper.Map<List<AppointmentViewModel>>(appointments);
 		}
 
-		public void InsertAppointment(AppointmentViewModel appointmentViewModel)
+		public void InsertAppointment(PostAppointment appointmentViewModel)
 		{
-			var appointment = Mapper.Map<Appointment>(appointmentViewModel);
-			AppointmentRepository.Insert(appointment);
+			var appointment = new Appointment
+			{
+				Time = appointmentViewModel.Time,
+			};
+
+			AppointmentRepository.Insert(appointment, appointmentViewModel.DogId, appointmentViewModel.PlaceId);
+
+			AppointmentRepository.Save();
 		}
 	}
 }

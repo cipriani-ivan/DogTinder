@@ -1,4 +1,4 @@
-﻿using DogTinder.IServices;
+﻿using DogTinder.Services.IService;
 using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -11,7 +11,6 @@ namespace DogTinder.Controllers
 	public class AppointmentController : ControllerBase
 	{
 		private readonly IAppointmentService AppointmentService;
-
 
 		public AppointmentController(IAppointmentService appointmentService)
 		{
@@ -26,9 +25,9 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public void PostAppointment([FromBody] AppointmentViewModel appointmentViewModel)
+		public void PostAppointment([FromBody] PostAppointment postAppointment)
 		{
-			AppointmentService.InsertAppointment(appointmentViewModel);
+			AppointmentService.InsertAppointment(postAppointment);
 		}
 	}
 }

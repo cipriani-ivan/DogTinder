@@ -1,7 +1,7 @@
-﻿using DogTinder.IServices;
-using DogTinder.ViewModels;
+﻿using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using DogTinder.Services.IService;
 
 namespace DogTinder.Controllers
 {
@@ -10,7 +10,6 @@ namespace DogTinder.Controllers
 	public class OwnerController : ControllerBase
 	{
 		private readonly IOwnerService OwnerService;
-
 
 		public OwnerController(IOwnerService ownerService)
 		{

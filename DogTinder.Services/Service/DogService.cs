@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using DogTinder.IRepository;
-using DogTinder.IServices;
-using DogTinder.Models;
-using DogTinder.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using DogTinder.EFDataAccessLibrary.Models;
+using DogTinder.Repository.IRepositories;
+using DogTinder.Services.IService;
+using DogTinder.ViewModels;
 
-namespace DogTinder.Services
+namespace DogTinder.Services.Service
 {
 	public class DogService : IDogService
 	{

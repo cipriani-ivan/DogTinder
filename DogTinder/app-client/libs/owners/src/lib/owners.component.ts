@@ -29,8 +29,8 @@ export class OwnersComponent implements OnInit {
   constructor(private api: APIClient) {}
 
   ngOnInit(): void {
-    this.api.getOwner().subscribe((users) => {
-      this.owners = users;
+    this.api.getOwner().subscribe((owners) => {
+      this.owners = owners;
       this.observableOwnerList.next(this.owners);
     });
   }

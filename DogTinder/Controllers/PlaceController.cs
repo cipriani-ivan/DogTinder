@@ -1,7 +1,7 @@
-﻿using DogTinder.IServices;
-using DogTinder.ViewModels;
+﻿using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using DogTinder.Services.IService;
 
 namespace DogTinder.Controllers
 {
@@ -10,7 +10,6 @@ namespace DogTinder.Controllers
 	public class PlaceController : ControllerBase
 	{
 		private readonly IPlaceService PlaceService;
-
 
 		public PlaceController(IPlaceService placeService)
 		{
@@ -24,7 +23,7 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public void PostPlaces(PlaceViewModel placeViewModel)
+		public void PostPlaces([FromBody] PlaceViewModel placeViewModel)
 		{
 			PlaceService.InsertPlace(placeViewModel);
 		}

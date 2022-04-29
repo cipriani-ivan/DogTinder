@@ -1,8 +1,8 @@
-using DogTinder.IRepository;
-using DogTinder.IServices;
-using DogTinder.Models.DataAccess;
-using DogTinder.Repository;
-using DogTinder.Services;
+using DogTinder.EFDataAccessLibrary.DataAccess;
+using DogTinder.Repository.IRepositories;
+using DogTinder.Repository.Repositories;
+using DogTinder.Services.IService;
+using DogTinder.Services.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;

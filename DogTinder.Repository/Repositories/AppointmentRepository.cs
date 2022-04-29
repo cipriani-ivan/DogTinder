@@ -1,14 +1,16 @@
-﻿using DogTinder.IRepository;
-using DogTinder.Models;
-using DogTinder.Models.DataAccess;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DogTinder.EFDataAccessLibrary.DataAccess;
+using DogTinder.EFDataAccessLibrary.Models;
+using DogTinder.Repository.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
-namespace DogTinder.Repository
+namespace DogTinder.Repository.Repositories
 {
 	public class AppointmentRepository : IAppointmentRepository
 	{
+		private bool Disposed;
 		private readonly DogTinderContext Context;
 
 		public AppointmentRepository(DogTinderContext context)
@@ -18,12 +20,16 @@ namespace DogTinder.Repository
 
 		public IEnumerable<Appointment> GetAll()
 		{
-			return Context.Appointments.Include(a => a.Place).Include(a => a.Dogs);
+			return Context.Appointments.Include(a => a.Place).Include(a => a.Dogs).ThenInclude(a => a.Owner);
 		}
 
-		public void Insert(Appointment appointment)
+		public void Insert(Appointment appointment, int dogId, int placeId)
 		{
-			Context.Appointments.Add(appointment);
+			var app = Context.Appointments.Add(appointment);
+			var dog = Context.Dogs.First(x => x.DogId == dogId);
+			var place = Context.Places.First(x => x.PlaceId == placeId);
+			app.Entity.Dogs = new List<Dog>(){ dog };
+			app.Entity.Place = place;
 		}
 
 		public void Save()
@@ -31,17 +37,16 @@ namespace DogTinder.Repository
 			Context.SaveChanges();
 		}
 
-		private bool disposed = false;
 		protected virtual void Dispose(bool disposing)
 		{
-			if (!disposed)
+			if (!Disposed)
 			{
 				if (disposing)
 				{
 					Context.Dispose();
 				}
 			}
-			disposed = true;
+			Disposed = true;
 		}
 
 		public void Dispose()

@@ -1,13 +1,14 @@
-﻿using DogTinder.IRepository;
-using DogTinder.Models;
-using DogTinder.Models.DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DogTinder.EFDataAccessLibrary.DataAccess;
+using DogTinder.EFDataAccessLibrary.Models;
+using DogTinder.Repository.IRepositories;
 
-namespace DogTinder.Repository
+namespace DogTinder.Repository.Repositories
 {
 	public class PlaceRepository : IPlaceRepository
 	{
+		private bool Disposed;
 		private readonly DogTinderContext Context;
 
 		public PlaceRepository(DogTinderContext context)
@@ -30,17 +31,16 @@ namespace DogTinder.Repository
 			Context.SaveChanges();
 		}
 
-		private bool disposed = false;
 		protected virtual void Dispose(bool disposing)
 		{
-			if (!disposed)
+			if (!Disposed)
 			{
 				if (disposing)
 				{
 					Context.Dispose();
 				}
 			}
-			disposed = true;
+			Disposed = true;
 		}
 
 		public void Dispose()

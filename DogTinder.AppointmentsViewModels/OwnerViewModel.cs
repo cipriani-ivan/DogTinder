@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DogTinder.ViewModels
+﻿namespace DogTinder.ViewModels
 {
 	public class OwnerViewModel
 	{

@@ -2,12 +2,12 @@
 
 <p>This component demonstrates places</p>
 
-<p *ngIf="!places"><em>Loading...</em></p>
+<p *ngIf="!observableList"><em>Loading...</em></p>
 
 <table
   class="table table-striped"
   aria-labelledby="tableLabel"
-  *ngIf="places"
+  *ngIf="observableList"
   data-test="appointmentsTable"
 >
   <thead>
@@ -21,3 +21,29 @@
     </tr>
   </tbody>
 </table>
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Add Place</h1>
+    <form [formGroup]="profileForm">
+      <div class="form-group">
+        <label for="name">adress</label>
+        <input
+          type="text"
+          class="form-control"
+          id="adress"
+          required
+          formControlName="adress"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!profileForm.valid"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+

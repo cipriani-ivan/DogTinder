@@ -1,7 +1,7 @@
-﻿using DogTinder.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DogTinder.ViewModels;
 
-namespace DogTinder.IServices
+namespace DogTinder.Services.IService
 {
 	public interface IDogService
 	{

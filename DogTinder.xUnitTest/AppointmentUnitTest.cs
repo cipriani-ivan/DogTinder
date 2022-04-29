@@ -1,11 +1,11 @@
 using AutoMapper;
-using DogTinder.IRepository;
-using DogTinder.Models;
-using DogTinder.Repository;
-using DogTinder.Services;
+using DogTinder.EFDataAccessLibrary.Models;
+using DogTinder.Repository.IRepositories;
+using DogTinder.Services.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
+using DogTinder.Profile;
 using Xunit;
 
 namespace DogTinder.xUnitTest
@@ -13,7 +13,7 @@ namespace DogTinder.xUnitTest
 	public class AppointmentUnitTest
 	{
 
-		private readonly AppointmentService appointmentService;
+		private readonly AppointmentService AppointmentService;
 		private static IMapper Mapper;
 
 		public AppointmentUnitTest()
@@ -86,14 +86,14 @@ namespace DogTinder.xUnitTest
 
 			var appointmentRepositoryMock = new Mock<IAppointmentRepository>();
 			appointmentRepositoryMock.Setup(x => x.GetAll()).Returns(appointmentsData);
-			appointmentService = new AppointmentService(appointmentRepositoryMock.Object, Mapper);
+			AppointmentService = new AppointmentService(appointmentRepositoryMock.Object, Mapper);
 		}
 
 		[Fact]
 		public void AppointmentsGetAllTestMapping()
 		{
 			// Act
-			var appointmentViewModel = appointmentService.GetAppointments();
+			var appointmentViewModel = AppointmentService.GetAppointments();
 
 			// Assert
 			Assert.Equal(2, appointmentViewModel.Count);

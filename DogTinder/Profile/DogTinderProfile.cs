@@ -1,11 +1,10 @@
-﻿using AutoMapper;
-using DogTinder.Models;
+﻿using System.Linq;
+using DogTinder.EFDataAccessLibrary.Models;
 using DogTinder.ViewModels;
-using System.Linq;
 
-namespace DogTinder
+namespace DogTinder.Profile
 {
-	public class DogTinderProfile: Profile
+	public class DogTinderProfile: AutoMapper.Profile
 	{
 		public DogTinderProfile()
 		{
@@ -16,7 +15,7 @@ namespace DogTinder
 				ForMember(dest =>
 				dest.Dogs,
 				opt => opt.MapFrom(scr => 
-					scr.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed }).ToList() 
+					scr.Dogs.Select(c => new DogViewModel() { Name = c.Name, Breed = c.Breed, Owner = new OwnerViewModel(){OwnerId = c.Owner.OwnerId, Name = c.Owner.Name }}).ToList() 
 				));
 			CreateMap<AppointmentViewModel, Appointment>();
 			CreateMap<Owner, OwnerViewModel>();

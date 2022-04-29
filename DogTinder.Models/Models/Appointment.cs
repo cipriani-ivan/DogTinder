@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DogTinder.Models
+namespace DogTinder.EFDataAccessLibrary.Models
 {
 	public class Appointment
 	{

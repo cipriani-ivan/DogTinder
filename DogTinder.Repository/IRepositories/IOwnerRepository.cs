@@ -1,7 +1,7 @@
-﻿using DogTinder.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DogTinder.EFDataAccessLibrary.Models;
 
-namespace DogTinder.IRepository
+namespace DogTinder.Repository.IRepositories
 {
 	public interface IOwnerRepository
 	{
