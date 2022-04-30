@@ -21,7 +21,7 @@ namespace DogTinder.Services.Service
 
 		public IList<DogViewModel> GetDogs()
 		{
-			var dogs = DogRepository.GetAll().ToList();
+			var dogs = DogRepository.GetAll(includeProperties: "Owner").ToList();
 			return Mapper.Map<List<DogViewModel>>(dogs);
 		}
 
