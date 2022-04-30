@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let place of places">
-      <td>{{ place.adress }}</td>
+      <td>{{ place.address }}</td>
     </tr>
   </tbody>
 </table>
@@ -25,12 +25,12 @@
     <h1>Add Place</h1>
     <form [formGroup]="profileForm">
       <div>
-        <label for="adress">adress</label>
+        <label for="address">address</label>
         <input
           type="text"
-          id="adress"
+          id="address"
           required
-          formControlName="adress"
+          formControlName="address"
         />
       </div>
       <button

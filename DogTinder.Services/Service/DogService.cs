@@ -28,7 +28,7 @@ namespace DogTinder.Services.Service
 		public void InsertDog(DogViewModel dogViewmodel)
 		{
 			var dog = Mapper.Map<Dog>(dogViewmodel);
-			DogRepository.Insert(dog);
+			DogRepository.Insert(dog, dogViewmodel.OwnerId);
 			DogRepository.Save();
 		}
 	}

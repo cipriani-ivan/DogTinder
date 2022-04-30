@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DogTinder.EFDataAccessLibrary.DataAccess;
 using DogTinder.EFDataAccessLibrary.Models;

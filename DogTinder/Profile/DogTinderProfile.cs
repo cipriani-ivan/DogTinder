@@ -11,7 +11,7 @@ namespace DogTinder.Profile
 			CreateMap<Appointment, AppointmentViewModel>()
 				.ForMember(dest =>
 				dest.Place,
-				opt => opt.MapFrom(scr => scr.Place.Adress)).
+				opt => opt.MapFrom(scr => scr.Place.Address)).
 				ForMember(dest =>
 				dest.Dogs,
 				opt => opt.MapFrom(scr => 

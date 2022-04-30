@@ -18,7 +18,7 @@ namespace DogTinder.xUnitTest
 
 		public AppointmentUnitTest()
 		{
-			// Arrage
+			// Arrange
 			var config = new MapperConfiguration(mc =>
 			{
 				mc.AddProfile(new DogTinderProfile());
@@ -34,7 +34,7 @@ namespace DogTinder.xUnitTest
 					Place = new Place
 					{
 						PlaceId = 1,
-						Adress = "Ockenburg"
+						Address = "Ockenburg"
 					},
 					Dogs = new List<Dog>()
 					{
@@ -58,7 +58,7 @@ namespace DogTinder.xUnitTest
 					Place = new Place
 					{
 						PlaceId = 1,
-						Adress = "Ockenburg"
+						Address = "Ockenburg"
 					},
 					Dogs = new List<Dog>()
 					{

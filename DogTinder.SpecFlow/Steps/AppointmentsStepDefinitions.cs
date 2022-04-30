@@ -38,11 +38,11 @@ namespace DogTinder.SpecFlow.Steps
 		}
 
 		[Then("check if appointments number is bigger of (.*) and the status fo the response is (.*)")]
-		public void ChechNumberAppointments(int appointmentscount, int statusCode)
+		public void CheckNumberAppointments(int appointmentsCount, int statusCode)
 		{
 
 			((int)Context.Get<HttpStatusCode>("ResponseStatusCode")).Should().Be(statusCode);
-			Context.Get<int>("AppointmentViewModelCount").Should().BeGreaterThan(appointmentscount);
+			Context.Get<int>("AppointmentViewModelCount").Should().BeGreaterThan(appointmentsCount);
 		}
 
 	}

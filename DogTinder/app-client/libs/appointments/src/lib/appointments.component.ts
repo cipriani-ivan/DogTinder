@@ -70,7 +70,7 @@ export class AppointmentsComponent implements OnInit {
 
           const place = selfThis.places.find(
             (x) => x.placeId == selfThis.profileForm.controls['placeid'].value
-          )?.adress;
+          )?.address;
 
           const appointmentObject: Appointment = JSON.parse(appointment);
 

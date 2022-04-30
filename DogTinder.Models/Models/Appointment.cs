@@ -9,7 +9,7 @@ namespace DogTinder.EFDataAccessLibrary.Models
 		public int AppointmentId { get; set; }
 		[Required]
 		public DateTime Time { get; set; }
-
+		[Required]
 		public Place Place { get; set; }
 
 		public ICollection<Dog> Dogs { get; set; }

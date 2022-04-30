@@ -314,7 +314,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "adress": {
+          "address": {
             "type": "string",
             "nullable": true
           }

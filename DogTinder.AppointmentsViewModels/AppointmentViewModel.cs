@@ -7,7 +7,7 @@ namespace DogTinder.ViewModels
 	{
 		public int AppointmentId { get; set; }
 		public DateTime Time { get; set; }
-		public int placeId { get; set; }
+		public int PlaceId { get; set; }
 		public string Place { get; set; }
 		public List<DogViewModel> Dogs { get; set; }
 	}

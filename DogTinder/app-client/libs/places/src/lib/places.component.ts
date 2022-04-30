@@ -13,7 +13,7 @@ export class PlacesComponent implements OnInit {
   public places: Place[] = [];
 
   profileForm = new FormGroup({
-    adress: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
   });
 
   submitted = false;
@@ -45,7 +45,7 @@ export class PlacesComponent implements OnInit {
       this.api.postPlace(place, { headers: headers }).subscribe(() => {
         this.places.push(JSON.parse(place));
         this.observablePlaceList.next(this.places);
-        this.profileForm.controls['adress'].setValue('');
+        this.profileForm.controls['address'].setValue('');
       });
     }
   }
