@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="app-client%2a%2a" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DogTinder.Services\DogTinder.Services.csproj" />
   </ItemGroup>
 

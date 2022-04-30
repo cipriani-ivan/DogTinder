@@ -1,11 +1,10 @@
 <h1 id="tableLabel">Appointments</h1>
 
-<p>This component demonstrates appointments ceration</p>
+<p>This component demonstrates appointments creation</p>
 
 <p *ngIf="!appointments"><em>Loading...</em></p>
 
 <table
-  class="table table-striped"
   aria-labelledby="tableLabel"
   *ngIf="appointments"
   data-test="appointmentsTable"
@@ -25,7 +24,7 @@
         <ng-container *ngFor="let dog of appointment.dogs">
           <ng-container *ngIf="dog !== null">
             <div>
-              Dog name: <strong>{{ dog.name }}</strong> - Dog breed:<strong>{{
+              Dog name: <strong>{{ dog.name }}</strong> - Dog breed: <strong>{{
                 dog.breed
               }}</strong>
               - Owner: <strong>{{ dog.owner.name }}</strong>
@@ -36,28 +35,27 @@
     </tr>
   </tbody>
 </table>
-<div class="container">
+<div>
   <div [hidden]="submitted">
     <h1>Add appointment</h1>
     <form [formGroup]="profileForm">
-      <div class="form-group">
+      <div>
         <label for="time">time</label>
         <input
           type="date"
-          class="form-control"
           id="time"
           required
           formControlName="time"
         />
       </div>
-      <select class="custom-select mb-3" formControlName="placeid">
+      <select formControlName="placeid">
         <option value="">Choose place</option>
         <option *ngFor="let place of places" [ngValue]="place.placeId">
           {{ place.adress }}
         </option>
       </select>
 
-      <select class="custom-select mb-3" formControlName="dogid">
+      <select formControlName="dogid">
         <option value="">Choose dog</option>
         <option *ngFor="let dog of dogs" [ngValue]="dog.dogId">
           {{ dog.name }}
@@ -65,7 +63,6 @@
       </select>
       <button
         type="submit"
-        class="btn btn-success"
         [disabled]="!profileForm.valid"
         (click)="onSubmit()"
       >

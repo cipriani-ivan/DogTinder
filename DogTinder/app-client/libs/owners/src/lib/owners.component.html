@@ -1,11 +1,10 @@
 <h1 id="tableLabel">Owners</h1>
 
-<p>This component demonstrates owners</p>
+<p>This component demonstrates owners creation</p>
 
 <p *ngIf="!observableList"><em>Loading...</em></p>
 
 <table
-  class="table table-striped"
   aria-labelledby="tableLabel"
   *ngIf="observableList"
   data-test="appointmentsTable"
@@ -21,15 +20,14 @@
     </tr>
   </tbody>
 </table>
-<div class="container">
+<div>
   <div [hidden]="submitted">
     <h1>Add owner</h1>
     <form [formGroup]="profileForm">
-      <div class="form-group">
+      <div>
         <label for="name">name</label>
         <input
           type="text"
-          class="form-control"
           id="name"
           required
           formControlName="name"
@@ -37,7 +35,6 @@
       </div>
       <button
         type="submit"
-        class="btn btn-success"
         [disabled]="!profileForm.valid"
         (click)="onSubmit()"
       >
