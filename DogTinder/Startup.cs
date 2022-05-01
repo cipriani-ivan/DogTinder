@@ -1,3 +1,4 @@
+using System.Reflection;
 using DogTinder.EFDataAccessLibrary.DataAccess;
 using DogTinder.Repository.IRepositories;
 using DogTinder.Repository.Repositories;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetCore.AutoRegisterDi;
 
 namespace DogTinder
 {
@@ -32,16 +34,12 @@ namespace DogTinder
 			{
 				configuration.RootPath = "app-client/dist";
 			});
-
-			// make automatic for all repository and service
-			services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-			services.AddScoped<IAppointmentService, AppointmentService>();
-			services.AddScoped<IPlaceRepository, PlaceRepository>();
-			services.AddScoped<IPlaceService, PlaceService>();
-			services.AddScoped<IDogRepository,DogRepository>();
-			services.AddScoped<IDogService, DogService>();
-			services.AddScoped<IOwnerRepository, OwnerRepository>();
-			services.AddScoped<IOwnerService, OwnerService>();
+			var repositoryAssembly = typeof(DogRepository).Assembly;
+			var serviceAssembly = typeof(DogService).Assembly;
+			var assembliesToScan = new[]
+				{ repositoryAssembly, serviceAssembly};
+			services.RegisterAssemblyPublicNonGenericClasses(assembliesToScan)
+				.AsPublicImplementedInterfaces(ServiceLifetime.Scoped);
 			services.AddDbContext<DogTinderContext>(options =>
 			{
 				options.UseSqlServer(Configuration.GetConnectionString("Default"));
