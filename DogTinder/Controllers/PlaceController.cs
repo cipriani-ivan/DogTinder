@@ -1,6 +1,8 @@
 ﻿using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DogTinder.Services.IService;
 
@@ -24,9 +26,11 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public async Task PostPlaces([FromBody] PlaceViewModel placeViewModel)
+		public async Task<HttpResponseMessage> PostPlaces([FromBody] PlaceViewModel placeViewModel)
 		{
+			if (!ModelState.IsValid) return new HttpResponseMessage(HttpStatusCode.BadRequest);
 			await PlaceService.InsertPlace(placeViewModel);
+			return new HttpResponseMessage(HttpStatusCode.Created);
 		}
 
 	}

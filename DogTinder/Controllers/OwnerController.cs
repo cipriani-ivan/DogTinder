@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DogTinder.Services.IService;
 
@@ -25,9 +27,11 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public async Task PostOwners([FromBody] OwnerViewModel ownerViewModel)
+		public async Task<HttpResponseMessage> PostOwners([FromBody] OwnerViewModel ownerViewModel)
 		{
+			if (!ModelState.IsValid) return new HttpResponseMessage(HttpStatusCode.BadRequest);
 			await OwnerService.InsertOwner(ownerViewModel);
+			return new HttpResponseMessage(HttpStatusCode.Created);
 		}
 		
 	}
