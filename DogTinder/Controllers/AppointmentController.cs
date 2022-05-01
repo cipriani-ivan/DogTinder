@@ -3,6 +3,7 @@ using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 namespace DogTinder.Controllers
@@ -22,17 +23,17 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpGet]
-		public IList<AppointmentViewModel> GetAppointments()
+		public async Task<List<AppointmentViewModel>> GetAppointments()
 		{
 			Logger.LogInformation("Log message in the GetAppointments() method");
-			return AppointmentService.GetAppointments().ToList();
+			return (await AppointmentService.GetAppointments()).ToList();
 		}
 
 		[HttpPost]
-		public void PostAppointment([FromBody] PostAppointment postAppointment)
+		public async Task PostAppointment([FromBody] PostAppointment postAppointment)
 		{
 			Logger.LogInformation("Log message in the PostAppointment() method");
-			AppointmentService.InsertAppointment(postAppointment);
+			await AppointmentService.InsertAppointment(postAppointment);
 		}
 	}
 }

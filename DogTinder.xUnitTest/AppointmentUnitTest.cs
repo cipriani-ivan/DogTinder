@@ -5,6 +5,8 @@ using DogTinder.Services.Service;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using DogTinder.Profile;
 using Xunit;
 
@@ -42,13 +44,23 @@ namespace DogTinder.xUnitTest
 						{
 							DogId = 1,
 							Name = "Diablolik",
-							Breed = "German Shorthair Pointer"
+							Breed = "German Shorthair Pointer",
+							Owner = new Owner()
+							{
+								Name = "Ivan",
+								OwnerId = 1
+							}
 						},                      
 						new Dog()
 						{
 							DogId = 2,
 							Name = "Adrian",
-							Breed = "Main Coon"
+							Breed = "Main Coon",
+							Owner = new Owner()
+							{
+								Name = "Ivan",
+								OwnerId = 1
+							}
 						},
 					}
 				},
@@ -66,34 +78,49 @@ namespace DogTinder.xUnitTest
 						{
 							DogId = 1,
 							Name = "Diablolik",
-							Breed = "German Shorthair Pointer"
+							Breed = "German Shorthair Pointer",
+							Owner = new Owner()
+							{
+								Name = "Ivan",
+								OwnerId = 1
+							}
 						},                     
 						new Dog()
 						{
 							DogId = 2,
 							Name = "Adrian",
-							Breed = "Main Coon"
+							Breed = "Main Coon",
+							Owner = new Owner()
+							{
+								Name = "Ivan",
+								OwnerId = 1
+							}
 						},
 						new Dog()
 						{				
 							DogId = 3,
 							Name = "Adrian",
-							Breed = "Main Coon"
+							Breed = "Main Coon",
+							Owner = new Owner()
+							{
+								Name = "Ivan",
+								OwnerId = 1
+							}
 						},
 					}
 				}
 			 };
 
 			var appointmentRepositoryMock = new Mock<IAppointmentRepository>();
-			appointmentRepositoryMock.Setup(x => x.GetAll()).Returns(appointmentsData);
+			appointmentRepositoryMock.Setup(x => x.GetAll()).ReturnsAsync(appointmentsData);
 			AppointmentService = new AppointmentService(appointmentRepositoryMock.Object, Mapper);
 		}
 
 		[Fact]
-		public void AppointmentsGetAllTestMapping()
+		public async Task AppointmentsGetAllTestMapping()
 		{
 			// Act
-			var appointmentViewModel = AppointmentService.GetAppointments();
+			var appointmentViewModel = await AppointmentService.GetAppointments();
 
 			// Assert
 			Assert.Equal(2, appointmentViewModel.Count);

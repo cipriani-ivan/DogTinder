@@ -1,6 +1,7 @@
 ﻿using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DogTinder.Services.IService;
 
 namespace DogTinder.Controllers
@@ -17,15 +18,15 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpGet]
-		public IList<PlaceViewModel> GetPlaces()
+		public async Task<IList<PlaceViewModel>> GetPlaces()
 		{
-			return PlaceService.GetPlaces();
+			return await PlaceService.GetPlaces();
 		}
 
 		[HttpPost]
-		public void PostPlaces([FromBody] PlaceViewModel placeViewModel)
+		public async Task PostPlaces([FromBody] PlaceViewModel placeViewModel)
 		{
-			PlaceService.InsertPlace(placeViewModel);
+			await PlaceService.InsertPlace(placeViewModel);
 		}
 
 	}

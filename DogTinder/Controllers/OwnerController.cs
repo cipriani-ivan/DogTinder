@@ -1,6 +1,8 @@
 ﻿using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using DogTinder.Services.IService;
 
 namespace DogTinder.Controllers
@@ -17,15 +19,15 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpGet]
-		public IList<OwnerViewModel> GetOwners()
+		public async Task<IList<OwnerViewModel>> GetOwners()
 		{
-			return OwnerService.GetOwners();
+			return await OwnerService.GetOwners();
 		}
 
 		[HttpPost]
-		public void PostOwners([FromBody] OwnerViewModel ownerViewModel)
+		public async Task PostOwners([FromBody] OwnerViewModel ownerViewModel)
 		{
-			OwnerService.InsertOwner(ownerViewModel);
+			await OwnerService.InsertOwner(ownerViewModel);
 		}
 		
 	}

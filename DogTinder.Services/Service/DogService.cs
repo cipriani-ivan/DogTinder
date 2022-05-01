@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using DogTinder.EFDataAccessLibrary.Models;
 using DogTinder.Repository.IRepositories;
@@ -19,17 +20,17 @@ namespace DogTinder.Services.Service
 			Mapper = mapper;
 		}
 
-		public IList<DogViewModel> GetDogs()
+		public async Task<IList<DogViewModel>> GetDogs()
 		{
-			var dogs = DogRepository.GetAll(includeProperties: "Owner").ToList();
+			var dogs = await DogRepository.GetAll(includeProperties: "Owner");
 			return Mapper.Map<List<DogViewModel>>(dogs);
 		}
 
-		public void InsertDog(DogViewModel dogViewmodel)
+		public async Task InsertDog(DogViewModel dogViewmodel)
 		{
 			var dog = Mapper.Map<Dog>(dogViewmodel);
 			DogRepository.Insert(dog, dogViewmodel.OwnerId);
-			DogRepository.Save();
+			await DogRepository.Save();
 		}
 	}
 }

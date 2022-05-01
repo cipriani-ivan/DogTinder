@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using DogTinder.EFDataAccessLibrary.Models;
 using DogTinder.Repository.IRepositories;
@@ -19,13 +20,13 @@ namespace DogTinder.Services.Service
 			Mapper = mapper;
 		}
 
-		public IList<AppointmentViewModel> GetAppointments()
+		public async Task<IList<AppointmentViewModel>> GetAppointments()
 		{
-			var appointments = AppointmentRepository.GetAll().ToList();
+			var appointments = await AppointmentRepository.GetAll();
 			return Mapper.Map<List<AppointmentViewModel>>(appointments);
 		}
 
-		public void InsertAppointment(PostAppointment appointmentViewModel)
+		public async Task InsertAppointment(PostAppointment appointmentViewModel)
 		{
 			var appointment = new Appointment
 			{
@@ -34,7 +35,7 @@ namespace DogTinder.Services.Service
 
 			AppointmentRepository.Insert(appointment, appointmentViewModel.DogId, appointmentViewModel.PlaceId);
 
-			AppointmentRepository.Save();
+			await AppointmentRepository.Save();
 		}
 	}
 }

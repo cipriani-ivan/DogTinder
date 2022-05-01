@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DogTinder.EFDataAccessLibrary.DataAccess;
 using DogTinder.EFDataAccessLibrary.Models;
 using DogTinder.Repository.IRepositories;
@@ -17,9 +18,9 @@ namespace DogTinder.Repository.Repositories
 			Context = context;
 		}
 
-		public IEnumerable<Appointment> GetAll()
+		public async Task<IEnumerable<Appointment>> GetAll()
 		{
-			return Context.Appointments.Include(a => a.Place).Include(a => a.Dogs).ThenInclude(a => a.Owner);
+			return await Context.Appointments.Include(a => a.Place).Include(a => a.Dogs).ThenInclude(a => a.Owner).ToListAsync();
 		}
 
 		public void Insert(Appointment appointment, int dogId, int placeId)

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DogTinder.Repository
 {
@@ -15,11 +16,11 @@ namespace DogTinder.Repository
 
 		protected GenericRepository(DogTinderContext context)
 		{
-			this.Context = context;
-			this.dbSet = context.Set<TEntity>();
+			Context = context;
+			dbSet = context.Set<TEntity>();
 		}
 
-		public virtual IEnumerable<TEntity> GetAll(
+		public virtual async Task<IEnumerable<TEntity>> GetAll(
 			Expression<Func<TEntity, bool>> filter = null,
 			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
 			string includeProperties = "")
@@ -31,10 +32,10 @@ namespace DogTinder.Repository
 				query = query.Where(filter);
 			}
 
-			query = includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries)
+			query = includeProperties.Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries)
 				.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
-			return orderBy != null ? orderBy(query).ToList() : query.ToList();
+			return orderBy != null ? await  orderBy(query).ToListAsync() : await  query.ToListAsync();
 		}
 
 		public virtual void Insert(TEntity entity)
@@ -43,9 +44,9 @@ namespace DogTinder.Repository
 		}
 
 
-		public virtual void Save()
+		public virtual async Task Save()
 		{
-			Context.SaveChanges();
+			await Context.SaveChangesAsync();
 		}
 
 		public virtual void Dispose(bool disposing)
