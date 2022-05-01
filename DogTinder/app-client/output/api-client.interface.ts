@@ -27,7 +27,7 @@ export interface APIClientInterface {
   getDog(requestHttpOptions?: HttpOptions): Observable<Dog[]>;
 
   /**
-   * Response generated for [ 200 ] HTTP response code.
+   * Response generated for [ 201 ] HTTP response code.
    */
   postDog(dog: string, requestHttpOptions?: HttpOptions): Observable<void>;
 

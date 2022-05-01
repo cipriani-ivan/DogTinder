@@ -68,9 +68,12 @@ export class APIClient implements APIClientInterface {
   }
 
   /**
-   * Response generated for [ 200 ] HTTP response code.
+   * Response generated for [ 201 ] HTTP response code.
    */
-  postAppointment(appointment: string, requestHttpOptions?: HttpOptions): Observable<void> {
+  postAppointment(
+    appointment: string,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void> {
     const path = `/Appointment`;
     const options: APIHttpOptions = {
       ...this.options,
