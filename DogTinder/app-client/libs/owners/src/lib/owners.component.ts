@@ -18,6 +18,8 @@ export class OwnersComponent implements OnInit {
 
   submitted = false;
 
+  somethingWentWrong = false;
+
   observableOwnerList: BehaviorSubject<Owner[]> = new BehaviorSubject<Owner[]>(
     []
   );
@@ -41,11 +43,18 @@ export class OwnersComponent implements OnInit {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
       });
-
-      this.api.postOwner(owner, { headers: headers }).subscribe(() => {
-        this.owners.push(JSON.parse(owner));
-        this.observableOwnerList.next(this.owners);
-        this.profileForm.controls['name'].setValue('');
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const selfThis = this;
+      selfThis.api.postOwner(owner, { headers: headers }).subscribe({
+        next() {
+          selfThis.owners.push(JSON.parse(owner));
+          selfThis.observableOwnerList.next(selfThis.owners);
+          selfThis.profileForm.controls['name'].setValue('');
+          selfThis.somethingWentWrong = false;
+        },
+        error() {
+          selfThis.somethingWentWrong = true;
+        },
       });
     }
   }

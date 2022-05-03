@@ -1,4 +1,5 @@
-﻿using DogTinder.Services.IService;
+﻿using System;
+using DogTinder.Services.IService;
 using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace DogTinder.Controllers
 		{
 			AppointmentService = appointmentService;
 			Logger = logFactory.CreateLogger<AppointmentController>();
-
 		}
 
 		[HttpGet]
@@ -53,12 +53,24 @@ namespace DogTinder.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[Produces("application/json")]
-		public async Task<HttpResponseMessage> PostAppointment([FromBody] PostAppointment postAppointment)
+		public async Task<ActionResult> PostAppointment([FromBody] PostAppointment postAppointment)
 		{
-			if (!ModelState.IsValid) return new HttpResponseMessage(HttpStatusCode.BadRequest);
-			Logger.LogInformation("Log message in the PostAppointment() method");
-			await AppointmentService.InsertAppointment(postAppointment);
-			return new HttpResponseMessage(HttpStatusCode.Created);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			try
+			{
+				Logger.LogInformation("Log message in the PostAppointment() method");
+				await AppointmentService.InsertAppointment(postAppointment);
+				return Created("", null);
+			}
+			catch (Exception)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError,
+					"Error creating new appointment record");
+			}
 		}
 	}
 }

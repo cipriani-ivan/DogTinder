@@ -1,10 +1,13 @@
-﻿using DogTinder.ViewModels;
+﻿using System;
+using DogTinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DogTinder.Services.IService;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace DogTinder.Controllers
 {
@@ -13,10 +16,12 @@ namespace DogTinder.Controllers
 	public class PlaceController : ControllerBase
 	{
 		private readonly IPlaceService PlaceService;
+		private readonly ILogger Logger;
 
-		public PlaceController(IPlaceService placeService)
+		public PlaceController(IPlaceService placeService, ILoggerFactory logFactory)
 		{
 			PlaceService = placeService;
+			Logger = logFactory.CreateLogger<AppointmentController>();
 		}
 
 		[HttpGet]
@@ -26,11 +31,24 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public async Task<HttpResponseMessage> PostPlaces([FromBody] PlaceViewModel placeViewModel)
+		public async Task<ActionResult> PostPlace([FromBody] PlaceViewModel placeViewModel)
 		{
-			if (!ModelState.IsValid) return new HttpResponseMessage(HttpStatusCode.BadRequest);
-			await PlaceService.InsertPlace(placeViewModel);
-			return new HttpResponseMessage(HttpStatusCode.Created);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			try
+			{
+				Logger.LogInformation("Log message in the PostPlace() method");
+				await PlaceService.InsertPlace(placeViewModel);
+				return Created("", null);
+			}
+			catch (Exception)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError,
+					"Error creating new place record");
+			}
 		}
 
 	}

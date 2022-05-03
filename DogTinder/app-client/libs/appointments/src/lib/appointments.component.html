@@ -24,10 +24,9 @@
         <ng-container *ngFor="let dog of appointment.dogs">
           <ng-container *ngIf="dog !== null">
             <div>
-              Dog name: <strong>{{ dog.name }}</strong> - Dog breed: <strong>{{
-                dog.breed
-              }}</strong>
-              - Owner: <strong>{{ dog.owner.name }}</strong>
+              Dog name: <strong>{{ dog.name }}</strong> - Dog breed:
+              <strong>{{ dog.breed }}</strong> - Owner:
+              <strong>{{ dog.owner.name }}</strong>
             </div>
           </ng-container>
         </ng-container>
@@ -41,12 +40,7 @@
     <form [formGroup]="profileForm">
       <div>
         <label for="time">time</label>
-        <input
-          type="date"
-          id="time"
-          required
-          formControlName="time"
-        />
+        <input type="date" id="time" required formControlName="time" />
       </div>
       <select formControlName="placeid">
         <option value="">Choose place</option>
@@ -61,6 +55,9 @@
           {{ dog.name }}
         </option>
       </select>
+      <div *ngIf="somethingWentWrong">
+        <strong>Something went wrong, appointment not saved!</strong>
+      </div>
       <button
         type="submit"
         [disabled]="!profileForm.valid"

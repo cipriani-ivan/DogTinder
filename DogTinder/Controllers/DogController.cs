@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DogTinder.Services.IService;
+using Microsoft.Extensions.Logging;
+using System;
+using Microsoft.AspNetCore.Http;
 
 namespace DogTinder.Controllers
 {
@@ -13,10 +16,12 @@ namespace DogTinder.Controllers
 	public class DogController : ControllerBase
 	{
 		private readonly IDogService DogService;
+		private readonly ILogger Logger;
 
-		public DogController(IDogService ownerService)
+		public DogController(IDogService ownerService, ILoggerFactory logFactory)
 		{
 			DogService = ownerService;
+			Logger = logFactory.CreateLogger<AppointmentController>();
 		}
 
 		[HttpGet]
@@ -26,11 +31,24 @@ namespace DogTinder.Controllers
 		}
 
 		[HttpPost]
-		public async Task<HttpResponseMessage> PostDog([FromBody] DogViewModel dogViewModel)
+		public async Task<ActionResult> PostDog([FromBody] DogViewModel dogViewModel)
 		{
-			 if (!ModelState.IsValid) return new HttpResponseMessage(HttpStatusCode.BadRequest);
-			 await DogService.InsertDog(dogViewModel);
-			 return new HttpResponseMessage(HttpStatusCode.Created);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			try
+			{
+				Logger.LogInformation("Log message in the PostDog() method");
+				await DogService.InsertDog(dogViewModel);
+				return Created("", null);
+			}
+			catch (Exception)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError,
+					"Error creating new dog record");
+			}
 		}
 
 	}

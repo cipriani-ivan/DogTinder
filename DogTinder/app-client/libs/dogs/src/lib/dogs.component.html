@@ -52,6 +52,9 @@
           {{ owner.name }}
         </option>
       </select>
+      <div *ngIf="somethingWentWrong">
+        <strong>Something went wrong, dog not saved!</strong>
+      </div>
       <button
         type="submit"
         [disabled]="!profileForm.valid"

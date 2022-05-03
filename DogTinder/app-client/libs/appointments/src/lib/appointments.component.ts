@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { Appointment } from 'output/models/appointment';
 import { APIClient } from 'output';
 import { Dog } from 'output/models/dog';
@@ -25,6 +25,8 @@ export class AppointmentsComponent implements OnInit {
   });
 
   submitted = false;
+
+  somethingWentWrong = false;
 
   observableAppointmentList: BehaviorSubject<Appointment[]> =
     new BehaviorSubject<Appointment[]>([]);
@@ -59,9 +61,8 @@ export class AppointmentsComponent implements OnInit {
         'Content-Type': 'application/json',
       });
 
-      this.api
-        .postAppointment(appointment, { headers: headers })
-        .subscribe(() => {
+      this.api.postAppointment(appointment, { headers: headers }).subscribe({
+        next() {
           const dog = selfThis.dogs.find(
             (x) => x.dogId == selfThis.profileForm.controls['dogid'].value
           );
@@ -90,12 +91,17 @@ export class AppointmentsComponent implements OnInit {
             appointmentObject.place = place;
           }
 
-          this.appointments.push(appointmentObject);
-          this.observableAppointmentList.next(this.appointments);
-          this.profileForm.controls['dogid'].setValue('');
-          this.profileForm.controls['placeid'].setValue('');
-          this.profileForm.controls['time'].setValue('');
-        });
+          selfThis.appointments.push(appointmentObject);
+          selfThis.observableAppointmentList.next(selfThis.appointments);
+          selfThis.profileForm.controls['dogid'].setValue('');
+          selfThis.profileForm.controls['placeid'].setValue('');
+          selfThis.profileForm.controls['time'].setValue('');
+          selfThis.somethingWentWrong = false;
+        },
+        error() {
+          selfThis.somethingWentWrong = true;
+        },
+      });
     }
   }
 }

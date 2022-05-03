@@ -26,12 +26,10 @@
     <form [formGroup]="profileForm">
       <div>
         <label for="address">address</label>
-        <input
-          type="text"
-          id="address"
-          required
-          formControlName="address"
-        />
+        <input type="text" id="address" required formControlName="address" />
+      </div>
+      <div *ngIf="somethingWentWrong">
+        <strong>Something went wrong, place not saved!</strong>
       </div>
       <button
         type="submit"
@@ -43,4 +41,3 @@
     </form>
   </div>
 </div>
-

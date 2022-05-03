@@ -21,6 +21,7 @@ export class DogsComponent implements OnInit {
   });
 
   submitted = false;
+  somethingWentWrong = false;
 
   observableDogList: BehaviorSubject<Dog[]> = new BehaviorSubject<Dog[]>([]);
 
@@ -49,22 +50,28 @@ export class DogsComponent implements OnInit {
       });
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const selfThis = this;
-      this.api.postDog(dog, { headers: headers }).subscribe(() => {
-        const ownerName = selfThis.owners.find(
-          (x) => x.ownerId == selfThis.profileForm.controls['ownerid'].value
-        )?.name;
-        const dogObject: Dog = JSON.parse(dog);
-        if (ownerName) {
-          dogObject.owner = {
-            ownerId: selfThis.profileForm.controls['ownerid'].value,
-            name: ownerName,
-          };
-        }
-        this.dogs.push(dogObject);
-        this.observableDogList.next(this.dogs);
-        this.profileForm.controls['name'].setValue('');
-        this.profileForm.controls['breed'].setValue('');
-        this.profileForm.controls['ownerid'].setValue('');
+      selfThis.api.postDog(dog, { headers: headers }).subscribe({
+        next() {
+          const ownerName = selfThis.owners.find(
+            (x) => x.ownerId == selfThis.profileForm.controls['ownerid'].value
+          )?.name;
+          const dogObject: Dog = JSON.parse(dog);
+          if (ownerName) {
+            dogObject.owner = {
+              ownerId: selfThis.profileForm.controls['ownerid'].value,
+              name: ownerName,
+            };
+          }
+          selfThis.dogs.push(dogObject);
+          selfThis.observableDogList.next(selfThis.dogs);
+          selfThis.profileForm.controls['name'].setValue('');
+          selfThis.profileForm.controls['breed'].setValue('');
+          selfThis.profileForm.controls['ownerid'].setValue('');
+          selfThis.somethingWentWrong = false;
+        },
+        error() {
+          selfThis.somethingWentWrong = true;
+        },
       });
     }
   }

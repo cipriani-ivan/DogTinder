@@ -5,6 +5,9 @@ using DogTinder.EFDataAccessLibrary.DataAccess;
 using DogTinder.EFDataAccessLibrary.Models;
 using DogTinder.Repository.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace DogTinder.Repository.Repositories
 {
@@ -12,10 +15,12 @@ namespace DogTinder.Repository.Repositories
 	{
 
 		private readonly DogTinderContext Context;
+		private readonly ILogger Logger;
 
-		public AppointmentRepository(DogTinderContext context) : base(context)
+		public AppointmentRepository(DogTinderContext context, ILoggerFactory logFactory) : base(context)
 		{
 			Context = context;
+			Logger = logFactory.CreateLogger<AppointmentRepository>();
 		}
 
 		public async Task<IEnumerable<Appointment>> GetAll()
@@ -26,10 +31,18 @@ namespace DogTinder.Repository.Repositories
 		public void Insert(Appointment appointment, int dogId, int placeId)
 		{
 			var app = Context.Appointments.Add(appointment);
-			var dog = Context.Dogs.First(x => x.DogId == dogId);
-			var place = Context.Places.First(x => x.PlaceId == placeId);
-			app.Entity.Dogs = new List<Dog>(){ dog };
-			app.Entity.Place = place;
+			try
+			{
+				var dog = Context.Dogs.First(x => x.DogId == dogId);
+				var place = Context.Places.First(x => x.PlaceId == placeId);
+				app.Entity.Dogs = new List<Dog>() {dog};
+				app.Entity.Place = place;
+			}
+			catch
+			{
+				Logger.LogInformation($"Log message in the Insert() method dogId = {dogId} or placeId = {placeId} is not a valid id");
+				throw;
+			}
 		}
 
 	}

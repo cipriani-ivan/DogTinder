@@ -18,6 +18,8 @@ export class PlacesComponent implements OnInit {
 
   submitted = false;
 
+  somethingWentWrong = false;
+
   observablePlaceList: BehaviorSubject<Place[]> = new BehaviorSubject<Place[]>(
     []
   );
@@ -41,11 +43,18 @@ export class PlacesComponent implements OnInit {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
       });
-
-      this.api.postPlace(place, { headers: headers }).subscribe(() => {
-        this.places.push(JSON.parse(place));
-        this.observablePlaceList.next(this.places);
-        this.profileForm.controls['address'].setValue('');
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const selfThis = this;
+      selfThis.api.postPlace(place, { headers: headers }).subscribe({
+        next() {
+          selfThis.places.push(JSON.parse(place));
+          selfThis.observablePlaceList.next(selfThis.places);
+          selfThis.profileForm.controls['address'].setValue('');
+          selfThis.somethingWentWrong = false;
+        },
+        error() {
+          selfThis.somethingWentWrong = true;
+        },
       });
     }
   }
