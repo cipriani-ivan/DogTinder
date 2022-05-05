@@ -8,6 +8,12 @@ import { AppComponent } from './app.component';
 import { NavMenuModule } from '@ad/nav-menu';
 import { APIClient } from 'output';
 import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +23,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     NavMenuModule.forRoot(),
     ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
   ],
-  providers: [APIClient],
+  providers: [
+    APIClient,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

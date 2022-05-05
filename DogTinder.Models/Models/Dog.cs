@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DogTinder.EFDataAccessLibrary.Models
 {
@@ -13,5 +14,8 @@ namespace DogTinder.EFDataAccessLibrary.Models
 		public string Breed { get; set; }	
 		
 		public Owner Owner { get; set; }
+
+		[Required]
+		public ICollection<Appointment> Appointments { get; set; }
 	}
 }

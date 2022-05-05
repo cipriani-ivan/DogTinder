@@ -13,8 +13,8 @@ describe('Appointments', () => {
     {
       appointmentId: 1,
       time: new Date(),
-      place: 'Ockenburg',
-      dogs: [{ name: 'Diablolik', breed: 'GSP' }],
+      place: { placeId: 0, address: 'Ockenburg' },
+      dog: { name: 'Diablolik', breed: 'GSP' },
     },
   ] as Appointment[];
 

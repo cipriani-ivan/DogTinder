@@ -14,10 +14,26 @@ export interface APIClientInterface {
   getAppointment(requestHttpOptions?: HttpOptions): Observable<Appointment[]>;
 
   /**
-   * Response generated for [ 200 ] HTTP response code.
+   * Response generated for [ 201 ] HTTP response code.
    */
   postAppointment(
     appointment: string,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void>;
+
+  /**
+   * Response generated for [ 204 ] HTTP response code.
+   */
+  patchAppointment(
+    appointment: string,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteAppointment(
+    appointment: number,
     requestHttpOptions?: HttpOptions
   ): Observable<void>;
 
@@ -27,7 +43,7 @@ export interface APIClientInterface {
   getDog(requestHttpOptions?: HttpOptions): Observable<Dog[]>;
 
   /**
-   * Response generated for [ 201 ] HTTP response code.
+   * Response generated for [ 200 ] HTTP response code.
    */
   postDog(dog: string, requestHttpOptions?: HttpOptions): Observable<void>;
 

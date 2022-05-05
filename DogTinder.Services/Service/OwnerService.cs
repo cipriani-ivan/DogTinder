@@ -22,7 +22,7 @@ namespace DogTinder.Services.Service
 
 		public async Task<IList<OwnerViewModel>> GetOwners()
 		{
-			var owners = await OwnerRepository.GetAll();
+			var owners = await OwnerRepository.GetAllAsync();
 			return Mapper.Map<List<OwnerViewModel>>(owners);
 		}
 
@@ -30,7 +30,7 @@ namespace DogTinder.Services.Service
 		{
 			var owner = Mapper.Map<Owner>(ownerViewmodel);
 			OwnerRepository.Insert(owner);
-			await OwnerRepository.Save();
+			await OwnerRepository.SaveAsync();
 		}
 	}
 }

@@ -7,6 +7,8 @@ namespace DogTinder.Repository.IRepositories
 	public interface IAppointmentRepository : IGenericRepository<Appointment>
 	{
 		Task<IEnumerable<Appointment>> GetAll();
-		void Insert(Appointment owner, int dogId, int placeId);
+		void Insert(Appointment owner);
+		void Update(Appointment owner);
+		void Delete(int appointmentId);
 	}
 }

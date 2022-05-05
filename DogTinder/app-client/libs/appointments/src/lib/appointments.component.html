@@ -14,22 +14,41 @@
       <th>Date</th>
       <th>Place</th>
       <th>Dog (name) (breed) (owner)</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let appointment of appointments">
       <td>{{ appointment.time | date: 'mediumDate' }}</td>
-      <td>{{ appointment.place }}</td>
+      <td>{{ appointment.place.address }}</td>
       <td>
-        <ng-container *ngFor="let dog of appointment.dogs">
-          <ng-container *ngIf="dog !== null">
-            <div>
-              Dog name: <strong>{{ dog.name }}</strong> - Dog breed:
-              <strong>{{ dog.breed }}</strong> - Owner:
-              <strong>{{ dog.owner.name }}</strong>
-            </div>
-          </ng-container>
+        <ng-container *ngIf="appointment.dog !== null">
+          <div>
+            Dog name: <strong>{{ appointment.dog.name }}</strong> - Dog breed:
+            <strong>{{ appointment.dog.breed }}</strong> - Owner:
+            <strong>{{ appointment.dog.owner.name }}</strong>
+          </div>
         </ng-container>
+      </td>
+      <td>
+        <button
+          (click)="
+            onClickOpenModal(
+              appointment.appointmentId,
+              appointment.dog.dogId,
+              appointment.place.placeId,
+              appointment.time
+            )
+          "
+          mat-mini-fab
+        >
+          Edit
+        </button>
+      </td>
+      <td>
+        <button (click)="onClickDelete(appointment.appointmentId)" mat-mini-fab>
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>

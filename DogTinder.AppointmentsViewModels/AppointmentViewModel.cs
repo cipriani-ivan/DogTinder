@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DogTinder.ViewModels
@@ -7,9 +8,8 @@ namespace DogTinder.ViewModels
 	{
 		public int AppointmentId { get; set; }
 		public DateTime Time { get; set; }
-		public int PlaceId { get; set; }
-		public string Place { get; set; }
-		public List<DogViewModel> Dogs { get; set; }
+		public PlaceViewModel Place { get; set; }
+		public DogViewModel Dog { get; set; }
 	}
 
 }

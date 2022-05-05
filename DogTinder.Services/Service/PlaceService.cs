@@ -22,7 +22,7 @@ namespace DogTinder.Services.Service
 
 		public async Task<IList<PlaceViewModel>> GetPlaces()
 		{
-			var places = await PlaceRepository.GetAll();
+			var places = await PlaceRepository.GetAllAsync();
 			return Mapper.Map<List<PlaceViewModel>>(places);
 		}
 
@@ -30,7 +30,7 @@ namespace DogTinder.Services.Service
 		{
 			var place = Mapper.Map<Place>(placeViewmodel);
 			PlaceRepository.Insert(place);
-			await PlaceRepository.Save();
+			await PlaceRepository.SaveAsync();
 		}
 	}
 }

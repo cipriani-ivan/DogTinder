@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DogTinder.Models.Migrations
+namespace DogTinder.EFDataAccessLibrary.Migrations
 {
     [DbContext(typeof(DogTinderContext))]
-    [Migration("20220423175106_FixAppointmentFK")]
-    partial class FixAppointmentFK
+    [Migration("20220505004126_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,61 +21,61 @@ namespace DogTinder.Models.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DogTinder.Models.Appointment", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Appointment", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("AppointmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DogID")
+                    b.Property<int>("DogId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PlaceID")
+                    b.Property<int?>("PlaceId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("AppointmentId");
 
-                    b.HasIndex("DogID");
+                    b.HasIndex("DogId");
 
-                    b.HasIndex("PlaceID");
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Dog", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Dog", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("DogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Breed")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int?>("OwnerID")
+                    b.Property<int?>("OwnerId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("DogId");
 
-                    b.HasIndex("OwnerID");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Dogs");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Owner", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Owner", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("OwnerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -85,53 +85,57 @@ namespace DogTinder.Models.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("OwnerId");
 
                     b.ToTable("Owners");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Place", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Place", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("PlaceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("PlaceId");
 
                     b.ToTable("Places");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Appointment", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Appointment", b =>
                 {
-                    b.HasOne("DogTinder.Models.Dog", "Dog")
-                        .WithMany()
-                        .HasForeignKey("DogID");
+                    b.HasOne("DogTinder.EFDataAccessLibrary.Models.Dog", "Dog")
+                        .WithMany("Appointments")
+                        .HasForeignKey("DogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DogTinder.Models.Place", "Place")
+                    b.HasOne("DogTinder.EFDataAccessLibrary.Models.Place", "Place")
                         .WithMany()
-                        .HasForeignKey("PlaceID");
+                        .HasForeignKey("PlaceId");
 
                     b.Navigation("Dog");
 
                     b.Navigation("Place");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Dog", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Dog", b =>
                 {
-                    b.HasOne("DogTinder.Models.Owner", null)
-                        .WithMany("Dog")
-                        .HasForeignKey("OwnerID");
+                    b.HasOne("DogTinder.EFDataAccessLibrary.Models.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("DogTinder.Models.Owner", b =>
+            modelBuilder.Entity("DogTinder.EFDataAccessLibrary.Models.Dog", b =>
                 {
-                    b.Navigation("Dog");
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

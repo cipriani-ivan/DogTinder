@@ -20,7 +20,7 @@ namespace DogTinder.Repository
 			dbSet = context.Set<TEntity>();
 		}
 
-		public virtual async Task<IEnumerable<TEntity>> GetAll(
+		public virtual async Task<IEnumerable<TEntity>> GetAllAsync(
 			Expression<Func<TEntity, bool>> filter = null,
 			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
 			string includeProperties = "")
@@ -43,8 +43,18 @@ namespace DogTinder.Repository
 			dbSet.Add(entity);
 		}
 
+		public virtual void Update(TEntity entity)
+		{
+			dbSet.Update(entity);
+		}
 
-		public virtual async Task Save()
+		public virtual void Delete(TEntity entity)
+		{
+			dbSet.Remove(entity);
+		}
+
+
+		public virtual async Task SaveAsync()
 		{
 			await Context.SaveChangesAsync();
 		}

@@ -8,13 +8,15 @@ namespace DogTinder.Repository
 {
 	public interface IGenericRepository<TEntity> where TEntity : class
 	{
-		Task<IEnumerable<TEntity>> GetAll(
+		Task<IEnumerable<TEntity>> GetAllAsync(
 			Expression<Func<TEntity, bool>> filter = null,
 			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
 			string includeProperties = "");
 
 		void Insert(TEntity entity);
-		Task Save();
+		void Update(TEntity entity);
+		void Delete(TEntity entity);
+		Task SaveAsync();
 		void Dispose(bool disposing);
 		void Dispose();
 	}

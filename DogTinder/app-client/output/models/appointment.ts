@@ -1,8 +1,9 @@
-import { Dog } from "./dog";
+import { Dog } from './dog';
+import { Place } from './place';
 
 export interface Appointment {
   appointmentId: number;
   time: Date;
-  place: string;
-  dogs: Dog[];
+  place: Place;
+  dog: Dog;
 }

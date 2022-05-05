@@ -11,5 +11,5 @@ test("Search for Breed", async ({ page }) => {
   await page.goto("/appointments");
   let exampletest = new ExampleClass(page);
   var text = await exampletest.getBreedText();
-  expect(text).toContain("Ockenburg");
+  expect(text).toContain("Roma");
 });

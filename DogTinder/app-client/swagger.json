@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostAppointment"
+                "$ref": "#/components/schemas/PostUpdateAppointment"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostAppointment"
+                "$ref": "#/components/schemas/PostUpdateAppointment"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PostAppointment"
+                "$ref": "#/components/schemas/PostUpdateAppointment"
               }
             }
           }
@@ -72,17 +72,46 @@
           "400": {
             "description": "Bad Request",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
-              },
-              "text/json": {
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Appointment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUpdateAppointment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUpdateAppointment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUpdateAppointment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -307,13 +336,8 @@
             "type": "string",
             "format": "date-time"
           },
-          "placeId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "place": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/PlaceViewModel"
           },
           "dogs": {
             "type": "array",
@@ -326,6 +350,11 @@
         "additionalProperties": false
       },
       "DogViewModel": {
+        "required": [
+          "breed",
+          "name",
+          "ownerId"
+        ],
         "type": "object",
         "properties": {
           "dogId": {
@@ -333,12 +362,12 @@
             "format": "int32"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "type": "string"
           },
           "breed": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "type": "string"
           },
           "ownerId": {
             "type": "integer",
@@ -351,6 +380,9 @@
         "additionalProperties": false
       },
       "OwnerViewModel": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "ownerId": {
@@ -358,13 +390,16 @@
             "format": "int32"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "PlaceViewModel": {
+        "required": [
+          "address"
+        ],
         "type": "object",
         "properties": {
           "placeId": {
@@ -372,15 +407,24 @@
             "format": "int32"
           },
           "address": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "PostAppointment": {
+      "PostUpdateAppointment": {
+        "required": [
+          "dogId",
+          "placeId",
+          "time"
+        ],
         "type": "object",
         "properties": {
+          "appointmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "time": {
             "type": "string",
             "format": "date-time"

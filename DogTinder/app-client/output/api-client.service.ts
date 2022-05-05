@@ -9,10 +9,9 @@ import { Dog } from './models/dog';
 import { Place } from './models/place';
 import { Owner } from './models/owner';
 
+
 export const USE_DOMAIN = new InjectionToken<string>('APIClient_USE_DOMAIN');
-export const USE_HTTP_OPTIONS = new InjectionToken<HttpOptions>(
-  'APIClient_USE_HTTP_OPTIONS'
-);
+export const USE_HTTP_OPTIONS = new InjectionToken<HttpOptions>('APIClient_USE_HTTP_OPTIONS');
 
 type APIHttpOptions = HttpOptions & {
   headers: HttpHeaders;
@@ -81,6 +80,38 @@ export class APIClient implements APIClientInterface {
     };
 
     return this.sendRequest<void>('POST', path, options, appointment);
+  }
+
+  /**
+   * Response generated for [ 204 ] HTTP response code.
+   */
+  patchAppointment(
+    appointment: string,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void> {
+    const path = `/Appointment`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('PATCH', path, options, appointment);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteAppointment(
+    appointment: number,
+    requestHttpOptions?: HttpOptions
+  ): Observable<void> {
+    const path = `/Appointment?appointmentId=${appointment}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<void>('DELETE', path, options);
   }
 
   /**

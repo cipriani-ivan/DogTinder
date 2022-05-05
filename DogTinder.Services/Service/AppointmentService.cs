@@ -26,16 +26,41 @@ namespace DogTinder.Services.Service
 			return Mapper.Map<List<AppointmentViewModel>>(appointments);
 		}
 
-		public async Task InsertAppointment(PostAppointment appointmentViewModel)
+		public async Task InsertAppointment(PostUpdateAppointment appointmentViewModel)
 		{
 			var appointment = new Appointment
 			{
 				Time = appointmentViewModel.Time,
+				Place = new Place() { PlaceId = appointmentViewModel.PlaceId },
+				Dog = new Dog() { DogId = appointmentViewModel.DogId } 
 			};
 
-			AppointmentRepository.Insert(appointment, appointmentViewModel.DogId, appointmentViewModel.PlaceId);
+			AppointmentRepository.Insert(appointment);
 
-			await AppointmentRepository.Save();
+			await AppointmentRepository.SaveAsync();
+		}
+
+		public async Task UpdateAppointment(PostUpdateAppointment appointmentViewModel)
+		{
+			// TODO: move to profile
+			var appointment = new Appointment
+			{
+				AppointmentId = appointmentViewModel.AppointmentId,
+				Time = appointmentViewModel.Time,
+				Place = new Place(){PlaceId = appointmentViewModel.PlaceId},
+				Dog = new Dog(){DogId = appointmentViewModel.DogId}
+			};
+
+			AppointmentRepository.Update(appointment);
+
+			await AppointmentRepository.SaveAsync();
+		}
+
+		public async Task DeleteAppointment(int appointmentId)
+		{
+			AppointmentRepository.Delete(appointmentId);
+
+			await AppointmentRepository.SaveAsync();
 		}
 	}
 }

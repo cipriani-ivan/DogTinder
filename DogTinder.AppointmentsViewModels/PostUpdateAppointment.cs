@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DogTinder.ViewModels
 {
-	public class PostAppointment
+	public class PostUpdateAppointment
 	{
+		public int AppointmentId { get; set; }
 		[Required]
 		public DateTime Time { get; set; }
 		[Required]

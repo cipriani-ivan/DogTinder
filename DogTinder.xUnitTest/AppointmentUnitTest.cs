@@ -38,8 +38,8 @@ namespace DogTinder.xUnitTest
 						PlaceId = 1,
 						Address = "Ockenburg"
 					},
-					Dogs = new List<Dog>()
-					{
+					Dog = 
+
 						new Dog()
 						{
 							DogId = 1,
@@ -50,19 +50,8 @@ namespace DogTinder.xUnitTest
 								Name = "Ivan",
 								OwnerId = 1
 							}
-						},                      
-						new Dog()
-						{
-							DogId = 2,
-							Name = "Adrian",
-							Breed = "Main Coon",
-							Owner = new Owner()
-							{
-								Name = "Ivan",
-								OwnerId = 1
-							}
-						},
-					}
+						}
+					
 				},
 				new Appointment{ 
 					AppointmentId = 2,
@@ -72,8 +61,8 @@ namespace DogTinder.xUnitTest
 						PlaceId = 1,
 						Address = "Ockenburg"
 					},
-					Dogs = new List<Dog>()
-					{
+					Dog =
+
 						new Dog()
 						{
 							DogId = 1,
@@ -84,30 +73,7 @@ namespace DogTinder.xUnitTest
 								Name = "Ivan",
 								OwnerId = 1
 							}
-						},                     
-						new Dog()
-						{
-							DogId = 2,
-							Name = "Adrian",
-							Breed = "Main Coon",
-							Owner = new Owner()
-							{
-								Name = "Ivan",
-								OwnerId = 1
-							}
-						},
-						new Dog()
-						{				
-							DogId = 3,
-							Name = "Adrian",
-							Breed = "Main Coon",
-							Owner = new Owner()
-							{
-								Name = "Ivan",
-								OwnerId = 1
-							}
-						},
-					}
+						}
 				}
 			 };
 
@@ -124,8 +90,8 @@ namespace DogTinder.xUnitTest
 
 			// Assert
 			Assert.Equal(2, appointmentViewModel.Count);
-			Assert.Equal(3, appointmentViewModel[1].Dogs.Count);
-			Assert.Equal("Ockenburg", appointmentViewModel[1].Place);
+			Assert.Equal("Diablolik", appointmentViewModel[1].Dog.Name);
+			Assert.Equal("Ockenburg", appointmentViewModel[1].Place.Address);
 		}
 
 	}
